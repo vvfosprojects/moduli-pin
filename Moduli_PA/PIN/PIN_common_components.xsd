@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema 
-    xmlns:suapcommon="http://www.agid.gov.it/MODULI_PA/SUAP/suap_common_components"
+    xmlns:pincommon="http://www.vigilfuoco.it/MODULI_PA/PIN/pin_common_components"
     xmlns:moduli="http://www.agid.gov.it/MODULI_PA/moduli_common_components"
     xmlns:aggregate="http://www.agid.gov.it/AgID_aggregate_components"    
     xmlns:basic="http://www.agid.gov.it/AgID_basic_components"
@@ -17,6 +17,41 @@
     <xs:import namespace="http://www.agid.gov.it/AgID_enumeration" schemaLocation="../../AgID_Vocabularies/AgID_enumeration.xsd"/>
 
    
+   	<xs:complexType name="PersonaAnagraficaType">
+        <xs:annotation>
+            <xs:documentation>Tipo per specificare i dati di una persona</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>            
+            <xs:group ref="aggregate:PersonaBaseGroup"/>
+            <xs:group ref="aggregate:ContattiFoniaGroup" minOccurs="0"/>
+            <xs:element name="residente" type="aggregate:IndirizzoType" minOccurs="0"//>
+
+        </xs:sequence>
+    </xs:complexType>
+   
+
+  	<xs:complexType name="ModuloBaseType" abstract="true">
+  		<xs:annotation>
+  			<xs:documentation>
+  				Struttura di Base corrispondente alla testata della modulistica PIN
+  			</xs:documentation>
+  		</xs:annotation>
+  		<xs:sequence>
+  			<xs:element name="rifPraticaVVF" type="xs:int"/>
+  			<xs:element name="provinciaComando" type="aggregate:ProvinciaType"/>
+  			<xs:element name="richiente">
+  				<xs:complexType>
+  					<xs:sequence>
+  						<xs:element name="datiAnagrafici" type="pincommon:PersonaAnagraficaType"/>
+  						<xs:element name="inQualitaDi" type="xs:string"/>
+  						<xs:element name="indirizzo" type="aggregate:IndirizzoType"/>
+  						<xs:element name="contatti" type="aggregate:ContattiDatiType"/>
+  					</xs:sequence>
+  				</xs:complexType>
+  			</xs:element>
+  			
+  		</xs:sequence>
+  	</xs:complexType>
   
     
 </xs:schema>
