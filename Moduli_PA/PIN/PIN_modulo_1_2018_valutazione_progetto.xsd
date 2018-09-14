@@ -35,7 +35,7 @@
   			<xs:extension base="pincommon:ModuloBaseType">
   				<xs:sequence>
   					<!-- CORPO DEL MODULO SPECIFICO -->
-  				
+  				    <!-- Test push -->
   				</xs:sequence>
 
   			

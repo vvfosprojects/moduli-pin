@@ -24,7 +24,7 @@
         <xs:sequence>            
             <xs:group ref="aggregate:PersonaBaseGroup"/>
             <xs:group ref="aggregate:ContattiFoniaGroup" minOccurs="0"/>
-            <xs:element name="residente" type="aggregate:IndirizzoType" minOccurs="0"//>
+            <xs:element name="residente" type="aggregate:IndirizzoType" minOccurs="0"/>
 
         </xs:sequence>
     </xs:complexType>
