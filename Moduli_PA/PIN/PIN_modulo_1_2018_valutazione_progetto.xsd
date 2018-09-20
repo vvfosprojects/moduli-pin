@@ -2,25 +2,19 @@
 <xs:schema 
     xmlns:valprog="http://www.vigilfuoco.it/MODULI_PA/PIN/modulo_1_2018_valutazione_progetto"
     xmlns:pincommon="http://www.vigilfuoco.it/MODULI_PA/PIN/pin_common_components"
-    
     xmlns:moduli="http://www.agid.gov.it/MODULI_PA/moduli_common_components"
     xmlns:aggregate="http://www.agid.gov.it/AgID_aggregate_components"
     xmlns:basic="http://www.agid.gov.it/AgID_basic_components"
     xmlns:enumeration="http://www.agid.gov.it/AgID_enumeration"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    
     targetNamespace="http://www.vigilfuoco.it/MODULI_PA/PIN/modulo_1_2018_valutazione_progetto"
     elementFormDefault="qualified" attributeFormDefault="qualified" version="1.0.0">
-    
-    
-    
-    <xs:import namespace="http://www.vigilfuoco.it/MODULI_PA/PIN/pin_common_components" schemaLocation="PIN_common_components.xsd"/>    
-    
+
+	<xs:import namespace="http://www.vigilfuoco.it/MODULI_PA/PIN/pin_common_components" schemaLocation="PIN_common_components.xsd"/>    
     <xs:import namespace="http://www.agid.gov.it/MODULI_PA/moduli_common_components" schemaLocation="../MODULI_common_components.xsd"/>
     <xs:import namespace="http://www.agid.gov.it/AgID_basic_components" schemaLocation="../../AgID_Vocabularies/AgID_basic_components.xsd"/>
     <xs:import namespace="http://www.agid.gov.it/AgID_aggregate_components" schemaLocation="../../AgID_Vocabularies/AgID_aggregate_components.xsd"/>
     <xs:import namespace="http://www.agid.gov.it/AgID_enumeration" schemaLocation="../../AgID_Vocabularies/AgID_enumeration.xsd"/>
-
 
 	<xs:annotation>
         <xs:documentation>
@@ -32,13 +26,13 @@
 
 	<xs:complexType name="ModuloValutazioneProgettoType" >
   		<xs:complexContent>
-  			<xs:extension base="pincommon:ModuloBaseType"> <!--  verificare la modalita extension , lo mettiamo su element? -->
+  			<xs:extension base="pincommon:ModuloBaseType">
   				<xs:sequence>
   					<!-- CORPO DEL MODULO SPECIFICO -->
 
   					<xs:element name="domandaLavoriDi" type="pincommon:DomandaLavoriDiType" minOccurs="1" maxOccurs="1"/>
   					<xs:element name="attivitaPrincipale" type="pincommon:AttivitaPrincipaleType"/>
-  					<xs:element name="codiceAttivita" type="pincommon:CodiceAttivitaType" minOccurs="1" maxOccurs="unbounded"/> <!-- Enumeration? -->
+  					<xs:element name="codiceAttivita" type="pincommon:CodiceAttivitaType" minOccurs="1" maxOccurs="unbounded"/>
   					<xs:element name="datiProfessionista" type="pincommon:ProfessionistaType"/>
   					<xs:element name="datiProfessionistaUfficio" type="pincommon:ProfessionistaUfficioType"/>
   					
@@ -53,11 +47,8 @@
   					<!-- Pagamento -->
   					<xs:element name="distintaVersamento" type="pincommon:DistintaVersamentoType"/>
   					
-  					<xs:element name="datiPerCorrispondenza" type="pincommon:PersonaAnagraficaType"/>
-
+  					<xs:element name="datiPerCorrispondenza" type="pincommon:CorrispondenzaType"/>
   				</xs:sequence>
-
-  			
   			</xs:extension>	
   		</xs:complexContent>
   	</xs:complexType>
