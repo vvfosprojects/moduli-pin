@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+    xmlns:scia="http://www.vigilfuoco.it/MODULI_PA/PIN/modulo_2_2018_SCIA"
+    xmlns:pincommon="http://www.vigilfuoco.it/MODULI_PA/PIN/pin_common_components"
+    xmlns:moduli="http://www.agid.gov.it/MODULI_PA/moduli_common_components"
+    xmlns:aggregate="http://www.agid.gov.it/AgID_aggregate_components"
+    xmlns:basic="http://www.agid.gov.it/AgID_basic_components"
+    xmlns:enumeration="http://www.agid.gov.it/AgID_enumeration"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.vigilfuoco.it/MODULI_PA/PIN/modulo_2_2018_SCIA"
+    elementFormDefault="qualified" attributeFormDefault="qualified" version="1.0.0">
+
+	<xs:import namespace="http://www.vigilfuoco.it/MODULI_PA/PIN/pin_common_components" schemaLocation="PIN_common_components.xsd"/>    
+    <xs:import namespace="http://www.agid.gov.it/MODULI_PA/moduli_common_components" schemaLocation="../MODULI_common_components.xsd"/>
+    <xs:import namespace="http://www.agid.gov.it/AgID_basic_components" schemaLocation="../../AgID_Vocabularies/AgID_basic_components.xsd"/>
+    <xs:import namespace="http://www.agid.gov.it/AgID_aggregate_components" schemaLocation="../../AgID_Vocabularies/AgID_aggregate_components.xsd"/>
+    <xs:import namespace="http://www.agid.gov.it/AgID_enumeration" schemaLocation="../../AgID_Vocabularies/AgID_enumeration.xsd"/>
+
+	<xs:annotation>
+        <xs:documentation>
+                PIN 2-2018 Segnalazione certificata inizio attività ai fini della sicurezza antincendio          
+        </xs:documentation>
+    </xs:annotation>
+ 
+	<xs:element name="ModuloTest" type="scia:ModuloSCIAType"/>
+
+	<xs:complexType name="ModuloSCIAType" >
+  		<xs:complexContent>
+  			<xs:extension base="pincommon:ModuloBaseType">
+  				<xs:sequence>
+  					<!-- CORPO DEL MODULO SPECIFICO -->
+					<xs:element name="riferimentoProgetto" type="scia:RiferimentoProgettoType" minOccurs="1" maxOccurs="1"/>
+
+
+					<!-- Cassare -->
+
+  					<xs:element name="domandaLavoriDi" type="pincommon:DomandaLavoriDiType" minOccurs="1" maxOccurs="1"/>
+  					<xs:element name="attivitaPrincipale" type="pincommon:AttivitaPrincipaleType"/>
+  					<xs:element name="codiceAttivita" type="pincommon:CodiceAttivitaType" minOccurs="1" maxOccurs="unbounded"/>
+  					<xs:element name="datiProfessionista" type="pincommon:ProfessionistaType"/>
+  					<xs:element name="datiProfessionistaUfficio" type="pincommon:ProfessionistaUfficioType"/>
+  					
+  					<!-- Informazioni generali -->
+  					<xs:element name="informazioniGeneraliAttivita" type="xs:string" minOccurs="0"/>
+  					<xs:element name="tipoIntervento" type="xs:string" minOccurs="0"/>
+  					<xs:element name="RtoRtV" type="basic:EmptyType"  minOccurs="0"/>
+  					
+  					<xs:element name="numFascicoliRelazioneTecnica" type="xs:int"/>
+  					<xs:element name="numElaboratiGrafici" type="xs:int"/>
+  					
+  					<!-- Pagamento -->
+  					<xs:element name="distintaVersamento" type="pincommon:DistintaVersamentoType"/>
+  					
+  					<xs:element name="datiPerCorrispondenza" type="pincommon:CorrispondenzaType"/>
+  				</xs:sequence>
+  			</xs:extension>	
+  		</xs:complexContent>
+  	</xs:complexType>
+  
+  	
+  	
+  	<xs:complexType name="RiferimentoProgettoType">
+  	
+  	<xs:sequence>
+  	
+  	<xs:element name="nuovoInsediamento" 			type="basic:EmptyType" /> 
+	<xs:element name="nuovoInsediamentoDataProt" 			type="scia:DataProtType" minOccurs="1" maxOccurs="unbounded" /> 
+  	 	
+  	<xs:element name="rifDocumentazioneTecnicaCatA" 	type="basic:EmptyType" /> 
+	        	<xs:element name="rifDocumentazioneTecnicaModificheArt4-2011" 	type="basic:EmptyType" >
+			        <xs:annotation>
+			            <xs:documentation>
+			            alla documentazione tecnica di progetto di cui alla asseverazione allegata
+						(per attività di cat. A,B,C in caso di modifiche di cui art.4, comma 6, del DPR 01/08/2011 n.151, che non comportino aggravio delle preesistenti
+						condizioni di sicurezza)
+			            </xs:documentation>
+			        </xs:annotation>
+	        	
+	        	</xs:element>
+  	
+  	
+  	</xs:sequence>
+  
+  	 	
+  	</xs:complexType>
+  	
+  	   
+  	<xs:complexType name="DataProtType">
+  		<xs:sequence>
+    		<xs:element name="data" type="xs:date" />
+    		<xs:element name="protocollo" type="xs:string" />
+    	</xs:sequence>
+  	</xs:complexType>	
+  	
+ 
+</xs:schema>
