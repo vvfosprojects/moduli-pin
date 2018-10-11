@@ -63,8 +63,8 @@
 		<xs:sequence>          
 			<xs:element name="cognome" type="xs:string"/>
 			<xs:element name="nome" type="xs:string"/>
-			<xs:element name="residente" type="aggregate:IndirizzoType" minOccurs="0"/>
-			<xs:element name="contatti" type="aggregate:ContattiType" minOccurs="0"/>
+			<xs:element name="residente" type="aggregate:IndirizzoType"/>
+			<xs:element name="contatti" type="aggregate:ContattiType"/>
 		</xs:sequence>
 	</xs:complexType>
 
