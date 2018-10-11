@@ -37,7 +37,6 @@
         	<xs:element name="cognome" type="xs:string"/>
             <xs:element name="nome" type="xs:string"/>
             <xs:element name="alboProfessionale" type="pincommon:AlboProfessionaleType"/>
-            
         </xs:sequence>
     </xs:complexType>
     
@@ -52,11 +51,25 @@
      	<xs:sequence>
      		<xs:element name="residente" type="aggregate:IndirizzoType" minOccurs="1"/>
             <xs:element name="nome" type="aggregate:ContattiDatiType" minOccurs="1"/>
+     		<!-- campo telefono -->
      	</xs:sequence>
      </xs:complexType>
    
+   
+	<xs:complexType name="CorrispondenzaType">
+		<xs:annotation>
+			<xs:documentation>Tipo per specificare i dati relativi alla corrispondeza</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>          
+			<xs:element name="cognome" type="xs:string"/>
+			<xs:element name="nome" type="xs:string"/>
+			<xs:element name="residente" type="aggregate:IndirizzoType"/>
+			<xs:element name="contatti" type="aggregate:ContattiType"/>
+		</xs:sequence>
+	</xs:complexType>
 
-  	<xs:complexType name="ModuloBaseType" abstract="true">	<!-- Perche Abstract ??? Verificare !!!! -->
+   
+  	<xs:complexType name="ModuloBaseType" abstract="true">
   		<xs:annotation>
   			<xs:documentation>
   				Struttura di Base corrispondente alla testata della modulistica PIN
@@ -86,10 +99,15 @@
 	        </xs:annotation>
 	        <xs:choice>
 	            <xs:element name="nuovoInsediamento" 			type="basic:EmptyType" />
-	            <xs:element name="nodificaAttivitaEsistente" 	type="basic:EmptyType" />
+	        	<xs:element name="modificaAttivitaEsistente" 	type="basic:EmptyType" />
 	        </xs:choice>
 	</xs:complexType>
   
+  <!-- 
+  CASE 1: 
+  indirizzo e contatti
+  Valutare obbligatorieta
+  -->
   	<xs:complexType name="AttivitaPrincipaleType">
   		<xs:annotation>
   			<xs:documentation>
@@ -98,8 +116,8 @@
   		</xs:annotation>
   		<xs:sequence>
   			<xs:element name="attivitaPrincipale" type="xs:string"/>
-  			<xs:element name="indirizzo" type="aggregate:IndirizzoType"/>
-  			<xs:element name="contattiFonia" type="aggregate:ContattiFoniaType"/>
+  			<xs:element name="indirizzo" type="aggregate:IndirizzoType" minOccurs="0"/>
+  			<xs:element name="contattiFonia" type="aggregate:ContattiFoniaType" minOccurs="0"/>
   		</xs:sequence>
   	</xs:complexType>
   
@@ -117,18 +135,30 @@
   			<xs:element name="dataVersamento" type="xs:date"/>
 			<xs:element name="tesoreriaProvinciale" type="aggregate:ProvinciaType"/> 	
 			<xs:element name="totaleVersamento" type="xs:decimal"/>
-			<xs:element name="attivitaDettaglio" type="pincommon:attivitaVersamentoType" minOccurs="1" maxOccurs="unbounded"  />
+			<xs:element name="attivitaDettaglio" type="pincommon:AttivitaVersamentoType" minOccurs="1" maxOccurs="unbounded"  />
   		</xs:sequence>
   	</xs:complexType>
   
-  <xs:complexType name="attivitaVersamentoType">
-	  <xs:sequence>
-	    	<xs:element name="numero" type="xs:string"/>
-	  		<xs:element name="classe" type="xs:string"/>
-			<xs:element name="categoriaDiRischio" type="xs:string"/>
+	 <!--
+	  <xs:complexType name="AttivitaVersamentoType">
+	  	<xs:complexContent>
+		  	<xs:extension base="pincommon:CodiceAttivitaType">
+			  <xs:sequence>
+					<xs:element name="RtoRtV" type="basic:EmptyType"  minOccurs="0"/>
+					<xs:element name="importoVersamento" type="xs:decimal"/>
+			  </xs:sequence>
+	  		</xs:extension>
+	  	</xs:complexContent>
+	  </xs:complexType>
+	-->  
+	
+	<xs:complexType name="AttivitaVersamentoType">
+		<xs:sequence>
+			<xs:element name="attivita" type="pincommon:CodiceAttivitaType"/>
 			<xs:element name="RtoRtV" type="basic:EmptyType"  minOccurs="0"/>
 			<xs:element name="importoVersamento" type="xs:decimal"/>
-	  </xs:sequence>
-  </xs:complexType>
-    
+		</xs:sequence>
+	</xs:complexType>	
+	
+	
 </xs:schema>
