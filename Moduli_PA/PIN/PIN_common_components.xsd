@@ -47,6 +47,16 @@
      	</xs:sequence>
      </xs:complexType>
     
+	<xs:complexType name="ProfessionistaAntincendioType">
+		<xs:annotation>
+			<xs:documentation>Tipo per specificare i dati del professionista antincendio</xs:documentation>
+		</xs:annotation>
+		<xs:sequence> 
+			<xs:element name="ProfessionistaType" type="pincommon:ProfessionistaType"/>     
+			<xs:element name="alboMinisteriale" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+       
     <xs:complexType name="ProfessionistaUfficioType">
      	<xs:sequence>
      		<xs:element name="residente" type="aggregate:IndirizzoType" minOccurs="1"/>
@@ -116,10 +126,21 @@
   		</xs:annotation>
   		<xs:sequence>
   			<xs:element name="attivitaPrincipale" type="xs:string"/>
-  			<xs:element name="indirizzo" type="aggregate:IndirizzoType" minOccurs="0"/>
-  			<xs:element name="contattiFonia" type="aggregate:ContattiFoniaType" minOccurs="0"/>
+  			<xs:element name="indirizzo" type="pincommon:SedeType" minOccurs="0"/>
   		</xs:sequence>
   	</xs:complexType>
+  
+	<xs:complexType name="SedeType">
+		<xs:annotation>
+			<xs:documentation>
+				Indirizzo e Contatti
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="indirizzo" type="aggregate:IndirizzoType" minOccurs="0"/>
+			<xs:element name="contattiFonia" type="aggregate:ContattiFoniaType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
   
   	<xs:complexType name="CodiceAttivitaType">
   		<xs:sequence>
