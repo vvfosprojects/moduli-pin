@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema 
-    xmlns:valprog="http://www.vigilfuoco.it/MODULI_PA/PIN/modulo_1_2018_valutazione_progetto"
+    xmlns:pinvalprog="http://www.vigilfuoco.it/MODULI_PA/PIN/modulo_1_2018_valutazione_progetto"
     xmlns:pincommon="http://www.vigilfuoco.it/MODULI_PA/PIN/pin_common_components"
     xmlns:moduli="http://www.agid.gov.it/MODULI_PA/moduli_common_components"
     xmlns:aggregate="http://www.agid.gov.it/AgID_aggregate_components"
@@ -22,7 +22,7 @@
         </xs:documentation>
     </xs:annotation>
  
-	<xs:element name="ModuloValutazioneProgetto" type="valprog:ModuloValutazioneProgettoType"/>
+	<xs:element name="ModuloValutazioneProgetto" type="pinvalprog:ModuloValutazioneProgettoType"/>
 
 	<xs:complexType name="ModuloValutazioneProgettoType" >
   		<xs:complexContent>
