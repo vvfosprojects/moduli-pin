@@ -137,6 +137,25 @@
 			<xs:element name="segnalazioneIncendi" type="basic:EmptyType" />
 		</xs:choice>
 	</xs:complexType>
+	
+	<xs:complexType name="ImpiantoType">
+		<xs:sequence>
+			<xs:annotation>
+				<xs:documentation>
+					Tipologia e Sede attività/impianto
+					Proprietà attività/impianto
+				</xs:documentation>
+			</xs:annotation>
+			<!-- Impianto - Tipologia e Sede di installazione --> 
+			<xs:element name="Edificio" type="xs:string"/>
+			<xs:element name="Posizione" type="xs:string"/>
+			<xs:element name="Sede" type="pincommon:SedeType"/>
+			<!-- Proprietà dell'Impianto --> 
+			<xs:element name="proprietaNome" type="xs:string"/>
+			<xs:element name="proprietaSede" type="pincommon:SedeType"/>
+		</xs:sequence>
+	</xs:complexType>
+	
   <!-- 
   CASE 1: 
   indirizzo e contatti
@@ -205,5 +224,11 @@
 		</xs:sequence>
 	</xs:complexType>	
 	
+	<xs:complexType name="AltraDocumentazioneType">
+		<xs:sequence>
+			<xs:element name="numeroDocumenti" type="xs:int" default="0"/>
+			<xs:element name="tipologiaDocumenti" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
 	
 </xs:schema>
