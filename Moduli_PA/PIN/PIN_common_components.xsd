@@ -112,7 +112,31 @@
 	        	<xs:element name="modificaAttivitaEsistente" 	type="basic:EmptyType" />
 	        </xs:choice>
 	</xs:complexType>
-  
+	
+	<xs:complexType name="ImpiantoDomandaLavoriDiType">
+		<xs:annotation>
+			<xs:documentation>Specifica il tipo di domanda in base all'attività</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="impiantoNuovo" 			type="basic:EmptyType" />
+			<xs:element name="impiantoAmpliamento" 	type="basic:EmptyType" />
+			<xs:element name="impiantoAltroIntervento" 	type="xs:string" />
+		</xs:choice>
+	</xs:complexType>
+	
+	<xs:complexType name="ImpiantoTipologiaPinType">
+		<xs:choice>
+			<xs:element name="energiaElettrica" type="basic:EmptyType" />
+			<xs:element name="scaricheAtmosferiche" type="basic:EmptyType" />
+			<xs:element name="gasCombustibiliComburenti" type="basic:EmptyType" />
+			<xs:element name="solidiLiquidiComburenti" type="basic:EmptyType" />
+			<xs:element name="riscaldamentoCLimatizzazione" type="basic:EmptyType" />
+			<xs:element name="estinzioneControlloIncendi" type="basic:EmptyType" />
+			<xs:element name="controlloFumoCalore" type="basic:EmptyType" />
+			<xs:element name="rilezioneFumoCaloreIncendi" type="basic:EmptyType" />
+			<xs:element name="segnalazioneIncendi" type="basic:EmptyType" />
+		</xs:choice>
+	</xs:complexType>
   <!-- 
   CASE 1: 
   indirizzo e contatti

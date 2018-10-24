@@ -257,7 +257,7 @@
 		</xs:complexContent>
 	</xs:complexType>
 	
-	
+	<!-- Allegato 4 - DICHIARAZIONE DI CORRETTA INSTALLAZIONE E FUNZIONAMENTO DELL' IMPIANTO -->
 	<xs:complexType name="allegato2_4DichImpiantoType">
 		<xs:complexContent>
 			<xs:extension base="moduli:AllegatoType">
@@ -268,15 +268,47 @@
 						</xs:documentation>
 					</xs:annotation>
 					<xs:sequence>
+								
+								
 						<xs:element name="rifPraticaVVF" type="xs:int"/>
-						<xs:element name="datiAnagrafici" type="pincommon:ProfessionistaType"/>
+						<xs:element name="datiAnagraficiInstallatore" type="pincommon:PersonaAnagraficaType"/>
+						<xs:element name="inQualitaDi" type="xs:string"/>
+						<xs:element name="datiAnagraficiImpresa" type="pincommon:ImpresaAnagraficaType"/>
+						
+						<xs:element name="impiantoDomandaLavoriDi" type="pincommon:ImpiantoDomandaLavoriDiType"/>
+						
+						
+						<xs:element name="commissionatoDa" 	type="xs:string" />
+						
+						<!-- Impianto - Tipologia e Sede di installazione --> 
+						<xs:element name="impiantoTipologia" type="xs:string"/>
+						<xs:element name="impiantoDescrizione" type="xs:string"/>
+						<xs:element name="impiantoSede" type="pincommon:SedeType"/>
+						<!-- Proprietà dell'Impianto --> 
+						<xs:element name="proprietaNome" type="xs:string"/>
+						<xs:element name="proprietaSede" type="pincommon:SedeType"/>
+						
+						<!-- Impianto tipologia --> 
+						<xs:element name="impiantoTipologiaPin" type="pincommon:ImpiantoTipologiaPinType"/>
+						
+						<!-- Descrizione --> 
+						<xs:element name="denominazioneImpianto" type="xs:string"/>
+						<xs:element name="descrizioneImpianto" type="xs:string"/>
+						
+						<!-- Dichiarazioni -->
+						<xs:element name="progettoNomeProgettista" type="xs:string"/>
+						<xs:element name="progettoDataProgetto" type="xs:date"/>
+						<xs:element name="progettistaAlboProfessionale" type="pincommon:AlboProfessionaleType"/>
+						<xs:element name="progettoNormeApplicate" type="xs:string"/>
+						
+						<xs:element name="allegatiAltro" type="xs:string"/>
 					</xs:sequence>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	
-	
+	<!-- Allegato 5 - CERTIFICAZIONE DI RISPONDENZA E DI CORRETTO FUNZIONAMENTO DELL’IMPIANTO -->
 	<xs:complexType name="allegato2_5CertImpiantoType">
 		<xs:complexContent>
 			<xs:extension base="moduli:AllegatoType">
@@ -288,7 +320,29 @@
 					</xs:annotation>
 					<xs:sequence>
 						<xs:element name="rifPraticaVVF" type="xs:int"/>
-						<xs:element name="datiAnagrafici" type="pincommon:ProfessionistaType"/>
+						<xs:element name="datiProfessionista" type="pincommon:ProfessionistaAntincendioType"/>
+						<xs:element name="datiProfessionistaUfficio" type="pincommon:ProfessionistaUfficioType"/>
+						
+						<xs:element name="impiantoDomandaLavoriDi" type="pincommon:ImpiantoDomandaLavoriDiType"/>
+						
+						<!-- Impianto - Tipologia e Sede di installazione --> 
+						<xs:element name="impiantoTipologia" type="xs:string"/>
+						<xs:element name="impiantoDescrizione" type="xs:string"/>
+						<xs:element name="impiantoSede" type="pincommon:SedeType"/>
+						<!-- Proprietà dell'Impianto --> 
+						<xs:element name="proprietaNome" type="xs:string"/>
+						<xs:element name="proprietaSede" type="pincommon:SedeType"/>
+						
+						<!-- Impianto tipologia --> 
+						<xs:element name="impiantoTipologiaPin" type="pincommon:ImpiantoTipologiaPinType"/>
+						
+						<!-- Descrizione --> 
+						<xs:element name="denominazioneImpianto" type="xs:string"/>
+						<xs:element name="descrizioneImpianto" type="xs:string"/>
+						
+						<!-- Certifica --> 
+						<xs:element name="disposizioniPinVVF" type="xs:string"/>
+						<xs:element name="normeBuonaTecnica" type="xs:string"/>
 					</xs:sequence>
 				</xs:sequence>
 			</xs:extension>
