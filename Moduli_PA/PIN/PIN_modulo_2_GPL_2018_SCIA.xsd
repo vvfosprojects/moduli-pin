@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+    xmlns:pinsciagpl="http://www.vigilfuoco.it/MODULI_PA/PIN/modulo_2_GPL_2018_SCIA"
+    xmlns:pincommon="http://www.vigilfuoco.it/MODULI_PA/PIN/pin_common_components"
+    xmlns:moduli="http://www.agid.gov.it/MODULI_PA/moduli_common_components"
+    xmlns:aggregate="http://www.agid.gov.it/AgID_aggregate_components"
+    xmlns:basic="http://www.agid.gov.it/AgID_basic_components"
+    xmlns:enumeration="http://www.agid.gov.it/AgID_enumeration"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.vigilfuoco.it/MODULI_PA/PIN/modulo_2_GPL_2018_SCIA"
+    elementFormDefault="qualified" attributeFormDefault="qualified" version="1.0.0">
+
+	<xs:import namespace="http://www.vigilfuoco.it/MODULI_PA/PIN/pin_common_components" schemaLocation="PIN_common_components.xsd"/>    
+    <xs:import namespace="http://www.agid.gov.it/MODULI_PA/moduli_common_components" schemaLocation="../MODULI_common_components.xsd"/>
+    <xs:import namespace="http://www.agid.gov.it/AgID_basic_components" schemaLocation="../../AgID_Vocabularies/AgID_basic_components.xsd"/>
+    <xs:import namespace="http://www.agid.gov.it/AgID_aggregate_components" schemaLocation="../../AgID_Vocabularies/AgID_aggregate_components.xsd"/>
+    <xs:import namespace="http://www.agid.gov.it/AgID_enumeration" schemaLocation="../../AgID_Vocabularies/AgID_enumeration.xsd"/>
+
+	<xs:annotation>
+        <xs:documentation>
+                PIN 2GPL-2018 Segnalazione certificata inizio attività ai fini della sicurezza antincendio          
+        </xs:documentation>
+    </xs:annotation>
+ 
+	<xs:element name="ModuloSciaGpl" type="pinsciagpl:ModuloSCIAGPLType"/>
+
+	<xs:complexType name="ModuloSCIAGPLType" >
+  		<xs:complexContent>
+  			<xs:extension base="pincommon:ModuloBaseType">
+  				<xs:sequence>
+  					<!-- SEGNALA -->
+  					<xs:element name="attivitaGPL" type="pinsciagpl:AttivitaPrincipaleGPLType"/>
+  					<xs:element name="sedeCustodiaFascicoloScia" type="pincommon:CorrispondenzaType"/>
+  					<xs:element name="distintaVersamento" type="pincommon:DistintaVersamentoType"/>
+  					<xs:element name="codiceAttivita" type="pinsciagpl:CodiceAttivitaType" minOccurs="1" maxOccurs="1"/>
+  					<xs:element name="datiPerCorrispondenza" type="pincommon:CorrispondenzaType"  minOccurs="0"/>
+  					<!-- ALLEGATI -->
+  					<xs:element name="tabellaAllegati" type="pinsciagpl:TabellaAllegatiType"/> 
+  				</xs:sequence>
+  			</xs:extension>	
+  		</xs:complexContent>
+  	</xs:complexType>
+    	
+	<xs:complexType name="AttivitaPrincipaleGPLType">
+		<xs:sequence>	
+			<xs:element name="numeroSerbatoiGPL" type="xs:int"/>
+			<xs:element name="tipologiaSerbatioGPL" type="pinsciagpl:TipologiaSerbatoioEnum"/>
+			<xs:element name="mcSerbatoiGPL" type="xs:decimal"/>
+			<xs:element name="distintaSerbatoiGPL" type="pinsciagpl:DistintaSerbatoiGPL" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="indirizzo" type="pincommon:SedeType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:simpleType name="TipologiaSerbatoioEnum">
+		<xs:annotation>
+			<xs:documentation>
+				Tipologia Serbatoio 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="A1-Serbatoio ad asse orizzontale, installato fuori terra"/>
+			<xs:enumeration value="A2-Serbatoio ad asse verticale, installato fuori terra"/>
+			<xs:enumeration value="B1-Serbatoio ad asse orizzontale, interrato, con guscio di polietilene"/>
+			<xs:enumeration value="B2-Serbatoio ad asse verticale, interrato, con guscio di polietilene"/>
+			<xs:enumeration value="C1-Serbatoio ad asse orizzontale, interrato con rivestimento con resine epossidiche e protezione catodica"/>
+			<xs:enumeration value="C2-Serbatoio ad asse verticale, interrato con rivestimento con resine epossidiche e protezione catodica"/>
+			<xs:enumeration value="D1-Serbatoio ad asse orizzontale, interrato in cassa di contenimento in cemento armato"/>
+			<xs:enumeration value="D2-Serbatoio ad asse verticale, interrato in cassa di contenimento in cemento armato"/>
+			<xs:enumeration value="E-Altro"/>
+		</xs:restriction>
+	</xs:simpleType>
+    	
+	<!-- Categoria di rischio 4.3.A prefissata da Modulo GPL -->
+	<xs:complexType name="CodiceAttivitaType">
+		<xs:sequence>
+			<xs:element name="numero" type="xs:string" fixed="4" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="classe" type="xs:string"  fixed="3" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="categoriaDiRischio" type="xs:string"  fixed="A" minOccurs="1" maxOccurs="1"/>  			
+		</xs:sequence>
+	</xs:complexType>  
+	
+	<xs:complexType name="DistintaSerbatoiGPL">
+		<xs:sequence>
+			<xs:element name="mcSerbatoioGPL" type="xs:decimal"/>
+			<xs:element name="matricolaSerbatoioGPL" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType> 
+  	 
+	<!-- Allegati -->
+	<xs:complexType name="TabellaAllegatiType">
+		<xs:sequence>
+			<xs:element name="allegato2_1GplAttestazione" type="pinsciagpl:Allegato2_1GplAttestazioneType"  minOccurs="0"/>
+			<xs:element name="allegato2_7GplDichiarazioneDiInstallazione" type="pinsciagpl:Allegato2_7GplDichiarazioneDiInstallazioneType"  minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+  
+	<!-- Allegato 2.1 - ATETSTAZIONE -->
+	<xs:complexType name="Allegato2_1GplAttestazioneType">
+		<xs:complexContent>
+			<xs:extension base="moduli:AllegatoType">
+				<xs:sequence>
+					<xs:annotation>
+						<xs:documentation>
+							Allegato 2.1 ATTESTAZIONE
+						</xs:documentation>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element name="rifPraticaVVF" type="xs:int"/>
+					</xs:sequence>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<!-- Allegato 2.7 - Dichiarazione Di Installazione --> 
+	<xs:complexType name="Allegato2_7GplDichiarazioneDiInstallazioneType">
+		<xs:complexContent>
+			<xs:extension base="moduli:AllegatoType">
+				<xs:sequence>
+					<xs:annotation>
+						<xs:documentation>
+							Allegato 2.7 Dichiarazione Di Installazione
+						</xs:documentation>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element name="rifPraticaVVF" type="xs:int"/>
+					</xs:sequence>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+ 
+</xs:schema>
