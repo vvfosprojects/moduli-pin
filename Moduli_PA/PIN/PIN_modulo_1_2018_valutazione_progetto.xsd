@@ -30,12 +30,12 @@
   				<xs:sequence>
   					<!-- CORPO DEL MODULO -->
 
-  					<xs:element name="domandaLavoriDi" type="pincommon:DomandaLavoriDiType" minOccurs="1" maxOccurs="1"/>
-  					<xs:element name="attivitaPrincipale" type="pincommon:AttivitaPrincipaleType"/>
-  					<xs:element name="codiceAttivita" type="pincommon:CodiceAttivitaType" minOccurs="1" maxOccurs="unbounded"/>
+  					<xs:element name="domandaLavoriDi" type="pincommon:DomandaLavoriDiType" />
+  					<xs:element name="attivitaPrincipale" type="pincommon:AttivitaType"/>
+  					<xs:element name="codiceAttivita" type="pincommon:CodiceAttivitaType" maxOccurs="unbounded"/>
   					<xs:element name="datiProfessionista" type="pincommon:ProfessionistaType"/>
-  					<xs:element name="datiProfessionistaUfficio" type="pincommon:ProfessionistaUfficioType"/>
-  					
+  				    <xs:element name="datiContattoProfessionista" type="pincommon:ProfessionistaDatiContattoType"/>
+  				  
   					<!-- Informazioni generali -->
   					<xs:element name="informazioniGeneraliAttivita" type="xs:string" minOccurs="0"/>
   					<xs:element name="tipoIntervento" type="xs:string" minOccurs="0"/>

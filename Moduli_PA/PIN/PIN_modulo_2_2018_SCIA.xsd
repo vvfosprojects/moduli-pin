@@ -29,11 +29,11 @@
   			<xs:extension base="pincommon:ModuloBaseType">
   				<xs:sequence>
   					<!-- CORPO DEL MODULO -->
-  					<xs:element name="riferimentoProgetto" type="pinscia:RiferimentoProgettoType" minOccurs="1" maxOccurs="1"/>
+  					<xs:element name="riferimentoProgetto" type="pinscia:RiferimentoProgettoType" />
   					<!-- SEGNALA -->
-  					<xs:element name="attivita" type="pincommon:AttivitaPrincipaleType"/>
-  					<xs:element name="codiceAttivita" type="pincommon:CodiceAttivitaType" minOccurs="1" maxOccurs="unbounded"/>
-  					<xs:element name="sedeCustodiaFascicoloScia" type="pincommon:CorrispondenzaType"/>
+  					<xs:element name="attivita" type="pincommon:AttivitaType"/>
+  					<xs:element name="codiceAttivita" type="pincommon:CodiceAttivitaType"  maxOccurs="unbounded"/>
+  					<xs:element name="sedeCustodiaFascicoloScia" type="pincommon:SedeCustodiaDocumentazioneType"/>
   					<xs:element name="RtoRtV" type="basic:EmptyType"  minOccurs="0"/>
   					<xs:element name="distintaVersamento" type="pincommon:DistintaVersamentoType"/>
   					<xs:element name="datiPerCorrispondenza" type="pincommon:CorrispondenzaType"  minOccurs="0"/>
@@ -48,10 +48,10 @@
   	<xs:complexType name="RiferimentoProgettoType">
   	  	<xs:sequence>
   	  	<!-- <xs:choice> -->
- 	  		<xs:element name="nuovoInsediamento" minOccurs="0">
+ 	  		<xs:element name="rifProgettiApprovati" minOccurs="0">
   	  			<xs:complexType>
   	  				<xs:sequence>
-  	  					<xs:element name="nuovoInsediamentoDataProt" type="pinscia:DataProtType" minOccurs="1" maxOccurs="unbounded" /> 
+  	  					<xs:element name="protocolloProgetto" type="pinscia:ProtocolloType" maxOccurs="unbounded" /> 
   	  				</xs:sequence>
   	  			</xs:complexType>
   	  		</xs:element> 
@@ -69,31 +69,25 @@
   		</xs:sequence>
    	</xs:complexType>
   	  	   
-  	<xs:complexType name="DataProtType">
-  		<xs:sequence>
-    		<xs:element name="data" type="xs:date" />
-    		<xs:element name="protocollo" type="xs:string" />
-    	</xs:sequence>
-  	</xs:complexType>	
+	<xs:complexType name="ProtocolloType">
+		<xs:annotation>
+			<xs:documentation>Tipo per specificare il numero e un data di protocollo</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>			
+			<xs:element name="numeroProtocollo" type="xs:string"/>
+			<xs:element name="dataRegistrazione" type="xs:date"/>
+		</xs:sequence>
+	</xs:complexType>	
   	 
 	<!-- Allegati -->
 	<xs:complexType name="TabellaAllegatiType">
 		<xs:sequence>
-			<xs:element name="allegato2_1Asseverazione" type="pinscia:allegato2_1AsseverazioneType" minOccurs="0"/>
-			<xs:element name="allegato2_2CertRei" type="pinscia:allegato2_2CertReiType" minOccurs="0"/>
+			<xs:element name="allegato2_1Asseverazione" type="pinscia:allegato2_1AsseverazioneType" />
+			<!--<xs:element name="allegato2_2CertRei" type="pinscia:allegato2_2CertReiType" minOccurs="0"/>
 			<xs:element name="allegato2_3DichProdotto" type="pinscia:allegato2_3DichProdottoType" minOccurs="0"/>
 			<xs:element name="allegato2_4DichImpianto" type="pinscia:allegato2_4DichImpiantoType" minOccurs="0"/>
-			<xs:element name="allegato2_5CertImpianto" type="pinscia:allegato2_5CertImpiantoType" minOccurs="0"/>
-			<xs:element name="allegato2_6DichNonAggravioRischio" type="pinscia:allegato2_6DichNonAggravioRischioType" minOccurs="0"/>
-			
-			<!-- Pin2Gpl
-			<xs:element name="allegato2.1-GplAttestazione" type="scia:AllegatiSCIAUnicaType"/>
-			<xs:element name="allegato2.7-GplDichDiInstallazione" type="scia:AllegatiSCIAUnicaType"/>
-			
-			<xs:element name="allegatoGplDichDiRispondenza" type="scia:AllegatiSCIAUnicaType"/>
-			
-			<xs:element name="allegatoProcuraDelega" type="moduli:AllegatoType" minOccurs="0"/>
-			-->
+			<xs:element name="allegato2_5CertImpianto" type="pinscia:allegato2_5CertImpiantoType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="allegato2_6DichNonAggravioRischio" type="pinscia:allegato2_6DichNonAggravioRischioType" minOccurs="0"/>-->
 		</xs:sequence>
 	</xs:complexType>
  
@@ -114,15 +108,15 @@
 						<!-- verificare se acquisire questi dati - sono acquisiti dal modulo pin2 -->
 						<xs:element name="rifPraticaVVF" type="xs:int"/>
 						<xs:element name="datiProfessionista" type="pincommon:ProfessionistaType"/>
-						<xs:element name="datiProfessionistaUfficio" type="pincommon:ProfessionistaUfficioType"/>
-						<xs:element name="domandaLavoriDi" type="pincommon:DomandaLavoriDiType" minOccurs="1" maxOccurs="1"/>
-						<xs:element name="attivitaPrincipale" type="pincommon:AttivitaPrincipaleType"/>
-						<xs:element name="codiceAttivita" type="pincommon:CodiceAttivitaType" minOccurs="1" maxOccurs="unbounded"/>
+						<xs:element name="datiContattoProfessionista" type="pincommon:ProfessionistaDatiContattoType"/>
+						<xs:element name="domandaLavoriDi" type="pincommon:DomandaLavoriDiType" />
+						<xs:element name="attivita" type="pincommon:AttivitaType"/>
+						<xs:element name="codiceAttivita" type="pincommon:CodiceAttivitaType" maxOccurs="unbounded"/>
 						<!-- . -->
-						<xs:element name="riferimentoProgetto" type="pinscia:RiferimentoProgettoType" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="riferimentoProgetto" type="pinscia:RiferimentoProgettoType" />
 						
 						<!-- DISTINTA DELLA DOCUMENTAZIONE TECNICA ALLEGATA -->
-						<xs:element name="distintaDocumentazioneAllegata" type="pinscia:distintaDocumentazioneAllegataType" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="distintaDocumentazioneAllegata" type="pinscia:distintaDocumentazioneAllegataType" />
 					</xs:sequence>
 				</xs:sequence>
 			</xs:extension>
@@ -140,28 +134,28 @@
 			</xs:annotation>
 			
 			<!-- 1. DOCUMENTAZIONE PROGETTUALE -->
-			<xs:element name="numFascicoliRelazioneTecnica" type="xs:int" minOccurs="1" default="0"/>
-			<xs:element name="numElaboratiGrafici" type="xs:int" minOccurs="1" default="0"/>
+			<xs:element name="numFascicoliRelazioneTecnica" type="xs:int" default="0"/>
+			<xs:element name="numElaboratiGrafici" type="xs:int" default="0"/>
 			<xs:element name="dicNonAggravioRischioIncendio" 	type="basic:EmptyType"  minOccurs="0"/>
 			
 			<!-- 2. CERTIFICAZIONI DI ELEMENTI STRUTTURALI PORTANTI  -->
-			<xs:element name="numCertificazioniELementiStrutturali" type="xs:int" minOccurs="1" default="0"/>
+			<xs:element name="numCertificazioniELementiStrutturali" type="xs:int" default="0"/>
 				
 			<!-- 3. DICHIARAZIONI REI  -->
-			<xs:element name="numDicREI" type="xs:int" minOccurs="1" default="0"/>	
+			<xs:element name="numDicREI" type="xs:int" default="0"/>	
 			
 			<!-- 4. DICHIARAZIONI IMPIANTI  -->
-			<xs:element name="dichiarazioniImpianti" minOccurs="1">
+			<xs:element name="dichiarazioniImpianti">
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="voce4I" type="pinscia:NrDocumentiAllegatiType" minOccurs="1" maxOccurs="1" />
-						<xs:element name="voce4II" type="pinscia:NrDocumentiAllegatiType" minOccurs="1" maxOccurs="1" />
-						<xs:element name="voce4III" type="pinscia:NrDocumentiAllegatiType" minOccurs="1" maxOccurs="1" />
-						<xs:element name="voce4IV" type="pinscia:NrDocumentiAllegatiType" minOccurs="1" maxOccurs="1" />
-						<xs:element name="voce4V" type="pinscia:NrDocumentiAllegatiType" minOccurs="1" maxOccurs="1" />
-						<xs:element name="voce4VI" type="pinscia:NrDocumentiAllegatiType" minOccurs="1" maxOccurs="1" />
-						<xs:element name="voce4VII" type="pinscia:NrDocumentiAllegatiType" minOccurs="1" maxOccurs="1" />
-						<xs:element name="voce4VIII" type="pinscia:NrDocumentiAllegatiType" minOccurs="1" maxOccurs="1" />
+						<xs:element name="voce4I" type="pinscia:NrDocumentiAllegatiType" />
+						<xs:element name="voce4II" type="pinscia:NrDocumentiAllegatiType" />
+						<xs:element name="voce4III" type="pinscia:NrDocumentiAllegatiType" />
+						<xs:element name="voce4IV" type="pinscia:NrDocumentiAllegatiType" />
+						<xs:element name="voce4V" type="pinscia:NrDocumentiAllegatiType" />
+						<xs:element name="voce4VI" type="pinscia:NrDocumentiAllegatiType" />
+						<xs:element name="voce4VII" type="pinscia:NrDocumentiAllegatiType" />
+						<xs:element name="voce4VIII" type="pinscia:NrDocumentiAllegatiType" />
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element> 
@@ -195,7 +189,7 @@
 					<xs:sequence>
 						<xs:element name="rifPraticaVVF" type="xs:int"/>
 						<xs:element name="datiProfessionista" type="pincommon:ProfessionistaAntincendioType"/>
-						<xs:element name="datiProfessionistaUfficio" type="pincommon:ProfessionistaUfficioType"/>
+						<xs:element name="datiContattoProfessionista" type="pincommon:ProfessionistaDatiContattoType"/>
 						
 						<!-- Attività --> 
 						<xs:element name="attivitaTipologia" type="xs:string"/>
@@ -249,7 +243,8 @@
 				
 					<xs:element name="rifPraticaVVF" type="xs:int"/>
 					<xs:element name="datiProfessionista" type="pincommon:ProfessionistaAntincendioType"/>
-					<xs:element name="datiProfessionistaUfficio" type="pincommon:ProfessionistaUfficioType"/>
+					<xs:element name="datiContattoProfessionista" type="pincommon:ProfessionistaDatiContattoType"/>
+					
 					<!-- Attività  --> 
 					<xs:element name="identificazioneEdificio" type="pincommon:ImpiantoType"/>
 			
@@ -350,7 +345,7 @@
 						<xs:element name="rifPraticaVVF" type="xs:int"/>
 
 						<xs:element name="datiProfessionista" type="pincommon:ProfessionistaAntincendioType"/>
-						<xs:element name="datiProfessionistaUfficio" type="pincommon:ProfessionistaUfficioType"/>
+						<xs:element name="datiContattoProfessionista" type="pincommon:ProfessionistaDatiContattoType"/>
 						
 						<xs:element name="impiantoDomandaLavoriDi" type="pincommon:ImpiantoDomandaLavoriDiType"/>
 						
@@ -387,7 +382,8 @@
 						<xs:element name="rifPraticaVVF" type="xs:int"/>
 
 						<xs:element name="datiProfessionista" type="pincommon:ProfessionistaAntincendioType"/>
-						<xs:element name="datiProfessionistaUfficio" type="pincommon:ProfessionistaUfficioType"/>
+						<xs:element name="datiContattoProfessionista" type="pincommon:ProfessionistaDatiContattoType"/>
+						
 						<!-- Attività  --> 
 						<xs:element name="dichiarazioneNonAggravioRischio" type="pinscia:dichiarazioneNonAggravioRischioType"/>
 						<xs:element name="dataPresentazioneSCIA" type="xs:date" minOccurs="0" maxOccurs="unbounded"/>
@@ -405,7 +401,7 @@
 	<xs:complexType name="dichiarazioneNonAggravioRischioType">
 		<xs:sequence>
 			<xs:element name="attivitaSede" type="pincommon:SedeType"/>
-			<xs:element name="attivitaElenco" type="pincommon:CodiceAttivitaType" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="attivitaElenco" type="pincommon:CodiceAttivitaType" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 
