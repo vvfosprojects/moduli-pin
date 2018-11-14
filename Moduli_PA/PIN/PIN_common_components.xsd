@@ -57,24 +57,36 @@
 		</xs:sequence>
 	</xs:complexType>
        
-    <xs:complexType name="ProfessionistaUfficioType">
-     	<xs:sequence>
-     		<xs:element name="residente" type="aggregate:IndirizzoType" minOccurs="1"/>
-            <xs:element name="nome" type="aggregate:ContattiDatiType" minOccurs="1"/>
-     		<!-- campo telefono -->
-     	</xs:sequence>
-     </xs:complexType>
+        
+	<xs:complexType name="ProfessionistaDatiContattoType">
+		<xs:sequence>
+			<xs:element name="indirizzo" type="aggregate:IndirizzoType" minOccurs="0"/>
+			<xs:element name="contatti" type="aggregate:ContattiDatiType" minOccurs="0" />
+			<!-- campo telefono -->
+		</xs:sequence>
+	</xs:complexType>
+       
    
    
 	<xs:complexType name="CorrispondenzaType">
 		<xs:annotation>
-			<xs:documentation>Tipo per specificare i dati relativi alla corrispondeza</xs:documentation>
+			<xs:documentation>Tipo per specificare i dati relativi alla corrispondenza</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>          
 			<xs:element name="cognome" type="xs:string"/>
 			<xs:element name="nome" type="xs:string"/>
-			<xs:element name="residente" type="aggregate:IndirizzoType"/>
+			<xs:element name="indirizzo" type="aggregate:IndirizzoType"/>
 			<xs:element name="contatti" type="aggregate:ContattiType"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="SedeCustodiaDocumentazioneType">
+		<xs:annotation>
+			<xs:documentation>Tipo per specificare i dati relativi alla sede in cui è custodita documentazione tecnica</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>          
+			<xs:element name="nominativo" type="xs:string"/>
+			<xs:element name="sede" type="aggregate:IndirizzoType"/>
 		</xs:sequence>
 	</xs:complexType>
 
@@ -130,7 +142,7 @@
 			<xs:element name="scaricheAtmosferiche" type="basic:EmptyType" />
 			<xs:element name="gasCombustibiliComburenti" type="basic:EmptyType" />
 			<xs:element name="solidiLiquidiComburenti" type="basic:EmptyType" />
-			<xs:element name="riscaldamentoCLimatizzazione" type="basic:EmptyType" />
+			<xs:element name="riscaldamentoClimatizzazione" type="basic:EmptyType" />
 			<xs:element name="estinzioneControlloIncendi" type="basic:EmptyType" />
 			<xs:element name="controlloFumoCalore" type="basic:EmptyType" />
 			<xs:element name="rilezioneFumoCaloreIncendi" type="basic:EmptyType" />
@@ -161,14 +173,14 @@
   indirizzo e contatti
   Valutare obbligatorieta
   -->
-  	<xs:complexType name="AttivitaPrincipaleType">
+  	<xs:complexType name="AttivitaType">
   		<xs:annotation>
   			<xs:documentation>
   				Nome e indirizzo Attività principale
   			</xs:documentation>
   		</xs:annotation>
   		<xs:sequence>
-  			<xs:element name="attivitaPrincipale" type="xs:string"/>
+  			<xs:element name="tipo" type="xs:string"/>
   			<xs:element name="indirizzo" type="pincommon:SedeType" minOccurs="0"/>
   		</xs:sequence>
   	</xs:complexType>
@@ -199,7 +211,7 @@
   			<xs:element name="dataVersamento" type="xs:date"/>
 			<xs:element name="tesoreriaProvinciale" type="aggregate:ProvinciaType"/> 	
 			<xs:element name="totaleVersamento" type="xs:decimal"/>
-			<xs:element name="attivitaDettaglio" type="pincommon:AttivitaVersamentoType" minOccurs="1" maxOccurs="unbounded"  />
+			<xs:element name="attivitaDettaglio" type="pincommon:AttivitaVersamentoType" maxOccurs="unbounded"  />
   		</xs:sequence>
   	</xs:complexType>
   
