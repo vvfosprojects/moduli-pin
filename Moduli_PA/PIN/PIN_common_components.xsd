@@ -136,37 +136,7 @@
 		</xs:choice>
 	</xs:complexType>
 	
-	<xs:complexType name="ImpiantoTipologiaPinType">
-		<xs:choice>
-			<xs:element name="energiaElettrica" type="basic:EmptyType" />
-			<xs:element name="scaricheAtmosferiche" type="basic:EmptyType" />
-			<xs:element name="gasCombustibiliComburenti" type="basic:EmptyType" />
-			<xs:element name="solidiLiquidiComburenti" type="basic:EmptyType" />
-			<xs:element name="riscaldamentoClimatizzazione" type="basic:EmptyType" />
-			<xs:element name="estinzioneControlloIncendi" type="basic:EmptyType" />
-			<xs:element name="controlloFumoCalore" type="basic:EmptyType" />
-			<xs:element name="rilezioneFumoCaloreIncendi" type="basic:EmptyType" />
-			<xs:element name="segnalazioneIncendi" type="basic:EmptyType" />
-		</xs:choice>
-	</xs:complexType>
-	
-	<xs:complexType name="ImpiantoType">
-		<xs:sequence>
-			<xs:annotation>
-				<xs:documentation>
-					Tipologia e Sede attività/impianto
-					Proprietà attività/impianto
-				</xs:documentation>
-			</xs:annotation>
-			<!-- Impianto - Tipologia e Sede di installazione --> 
-			<xs:element name="Edificio" type="xs:string"/>
-			<xs:element name="Posizione" type="xs:string"/>
-			<xs:element name="Sede" type="pincommon:SedeType"/>
-			<!-- Proprietà dell'Impianto --> 
-			<xs:element name="proprietaNome" type="xs:string"/>
-			<xs:element name="proprietaSede" type="pincommon:SedeType"/>
-		</xs:sequence>
-	</xs:complexType>
+
 	
   <!-- 
   CASE 1: 
@@ -215,19 +185,7 @@
   		</xs:sequence>
   	</xs:complexType>
   
-	 <!--
-	  <xs:complexType name="AttivitaVersamentoType">
-	  	<xs:complexContent>
-		  	<xs:extension base="pincommon:CodiceAttivitaType">
-			  <xs:sequence>
-					<xs:element name="RtoRtV" type="basic:EmptyType"  minOccurs="0"/>
-					<xs:element name="importoVersamento" type="xs:decimal"/>
-			  </xs:sequence>
-	  		</xs:extension>
-	  	</xs:complexContent>
-	  </xs:complexType>
-	-->  
-	
+	 
 	<xs:complexType name="AttivitaVersamentoType">
 		<xs:sequence>
 			<xs:element name="attivita" type="pincommon:CodiceAttivitaType"/>
@@ -236,11 +194,16 @@
 		</xs:sequence>
 	</xs:complexType>	
 	
+	
+	
 	<xs:complexType name="AltraDocumentazioneType">
 		<xs:sequence>
-			<xs:element name="numeroDocumenti" type="xs:int" default="0"/>
 			<xs:element name="tipologiaDocumenti" type="xs:string"/>
+			<xs:element name="docAllegato" type="moduli:AllegatoType" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
+		<xs:attribute name="numero" type="xs:int" default="0" />
 	</xs:complexType>
+	
+	
 	
 </xs:schema>
