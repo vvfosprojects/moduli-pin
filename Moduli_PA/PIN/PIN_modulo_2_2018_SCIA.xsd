@@ -102,7 +102,7 @@
 						<xs:element name="rifPraticaVVF" type="xs:int"/>
 						<xs:element name="datiProfessionista" type="pincommon:ProfessionistaType"/>
 						<xs:element name="datiContattoProfessionista" type="pincommon:ProfessionistaDatiContattoType"/>
-						<xs:element name="domandaLavoriDi" type="pincommon:DomandaLavoriDiType" />
+						<xs:element name="lavoriDi" type="pincommon:LavoriDiType" />
 						<xs:element name="attivita" type="pincommon:AttivitaType"/>
 						<xs:element name="codiceAttivita" type="pincommon:CodiceAttivitaType" maxOccurs="unbounded"/>
 						<!-- . -->
@@ -235,7 +235,7 @@
 					<xs:sequence>
 						<xs:element name="rifPraticaVVF" type="xs:int"/>
 
-						<xs:element name="datiProfessionista" type="pincommon:ProfessionistaAntincendioType"/>
+						<xs:element name="datiProfessionista" type="pincommon:ProfessionistaType"/>
 						<xs:element name="datiContattoProfessionista" type="pincommon:ProfessionistaDatiContattoType"/>
 						
 						<!-- Attività  --> 
