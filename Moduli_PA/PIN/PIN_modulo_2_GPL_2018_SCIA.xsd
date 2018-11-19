@@ -33,6 +33,8 @@
   					<xs:element name="sedeCustodiaFascicoloScia" type="pincommon:SedeCustodiaDocumentazioneType"/>
   					<xs:element name="distintaVersamento" type="pinsciagpl:DistintaVersamentoType"/>
   					<xs:element name="datiPerCorrispondenza" type="pincommon:CorrispondenzaType"  minOccurs="0"/>
+  					<xs:element name="dichiarazioneDittaDistributriceGPL" type="pinsciagpl:DichiarazioneDittaDistributriceGPL" minOccurs="0"/>
+  					
   					<!-- ALLEGATI -->
   					<xs:element name="tabellaAllegati" type="pinsciagpl:TabellaAllegatiType"/> 
   				</xs:sequence>
@@ -135,6 +137,23 @@
 			<xs:element name="matricolaSerbatoioGPL" type="xs:string"/>
 		</xs:sequence>
 	</xs:complexType> 
+  	 
+  	 
+	<xs:complexType name="DichiarazioneDittaDistributriceGPL">
+		<xs:sequence>
+			<xs:element name="dichiarante">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="cognome" type="xs:string"/>
+						<xs:element name="nome" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dittaDistributrice" type="aggregate:ImpresaAnagraficaType"/>
+		</xs:sequence>
+	</xs:complexType> 
+  	 
+
   	 
 	<!-- Allegati -->
 	<xs:complexType name="TabellaAllegatiType">
