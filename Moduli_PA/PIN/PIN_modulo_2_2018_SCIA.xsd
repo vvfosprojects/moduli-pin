@@ -39,7 +39,13 @@
   					<xs:element name="datiPerCorrispondenza" type="pincommon:CorrispondenzaType"  minOccurs="0"/>
   					
   					<!-- ALLEGATI -->
-  					<xs:element name="tabellaAllegati" type="pinscia:TabellaAllegatiType"/> 
+  					<xs:element name="allegati">
+  						<xs:complexType>
+  							<xs:sequence>
+  								<xs:element name="pin2_1Asseverazione" type="pinscia:pin2_1AsseverazioneType" />
+  							</xs:sequence>
+  						</xs:complexType>
+  					</xs:element> 
   				</xs:sequence>
   			</xs:extension>	
   		</xs:complexContent>
@@ -78,24 +84,11 @@
 			<xs:element name="dataRegistrazione" type="xs:date"/>
 		</xs:sequence>
 	</xs:complexType>	
-  	 
-	<!-- Allegati -->
-	<xs:complexType name="TabellaAllegatiType">
-		<xs:sequence>
-			<xs:element name="allegato2_1Asseverazione" type="pinscia:allegato2_1AsseverazioneType" />
-			<!--<xs:element name="allegato2_2CertRei" type="pinscia:allegato2_2CertReiType" minOccurs="0"/>
-			<xs:element name="allegato2_3DichProdotto" type="pinscia:allegato2_3DichProdottoType" minOccurs="0"/>
-			<xs:element name="allegato2_4DichImpianto" type="pinscia:allegato2_4DichImpiantoType" minOccurs="0"/>
-			<xs:element name="allegato2_5CertImpianto" type="pinscia:allegato2_5CertImpiantoType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="allegato2_6DichNonAggravioRischio" type="pinscia:allegato2_6DichNonAggravioRischioType" minOccurs="0"/>-->
-		</xs:sequence>
-	</xs:complexType>
- 
- 
+  	
  
 
 	<!-- Allegato 2.1 - ASSEVERAZIONE -->
-	<xs:complexType name="allegato2_1AsseverazioneType">
+	<xs:complexType name="pin2_1AsseverazioneType">
 		<xs:complexContent>
 			<xs:extension base="moduli:AllegatoType">
 				<xs:sequence>
@@ -117,6 +110,7 @@
 						
 						<!-- DISTINTA DELLA DOCUMENTAZIONE TECNICA ALLEGATA -->
 						<xs:element name="distintaDocumentazioneAllegata" type="pinscia:distintaDocumentazioneAllegataType" />
+						
 					</xs:sequence>
 				</xs:sequence>
 			</xs:extension>
@@ -134,15 +128,45 @@
 			</xs:annotation>
 			
 			<!-- 1. DOCUMENTAZIONE PROGETTUALE -->
-			<xs:element name="numFascicoliRelazioneTecnica" type="xs:int" default="0"/>
-			<xs:element name="numElaboratiGrafici" type="xs:int" default="0"/>
-			<xs:element name="dicNonAggravioRischioIncendio" 	type="basic:EmptyType"  minOccurs="0"/>
+			<xs:element name="relazioneTecnica">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="attoRelazioneTecnica" type="moduli:AllegatoType" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="numeroAtti" type="xs:int" default="0" />
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="elaboratiGrafici">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="elaboratoGrafico" type="moduli:AllegatoType" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="numero" type="xs:int" default="0" />
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="pin2_6DichNonAggravioRischio" type="pinscia:allegato2_6DichNonAggravioRischioType" minOccurs="0"/>
 			
 			<!-- 2. CERTIFICAZIONI DI ELEMENTI STRUTTURALI PORTANTI  -->
-			<xs:element name="numCertificazioniELementiStrutturali" type="xs:int" default="0"/>
-				
-			<!-- 3. DICHIARAZIONI REI  -->
-			<xs:element name="numDicREI" type="xs:int" default="0"/>	
+			<xs:element name="pin2_2CertificazioniREI">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="pin2_2CertREI" type="moduli:AllegatoType" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="numero" type="xs:int" default="0" />
+				</xs:complexType>
+			</xs:element>
+			
+			<!-- 3. DICHIARAZIONI INERENTI I PRODOTTI CLASSIFICATI AI FINI DELLA REAZIONE E DELLA RESISTENZA AL FUOCO ED I DISPOSITIVI DI APERTURA DELLE PORTE  -->
+			<xs:element name="pin2_3DichiarazioniProdotti">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="pin2_3DichProd" type="moduli:AllegatoType" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="numero" type="xs:int" default="0" />
+				</xs:complexType>
+			</xs:element>
 			
 			<!-- 4. DICHIARAZIONI IMPIANTI  -->
 			<xs:element name="dichiarazioniImpianti">
@@ -168,211 +192,41 @@
 	
 	<xs:complexType name="NrDocumentiAllegatiType">
 		<xs:sequence>
-			<xs:element name="DC" type="xs:int" minOccurs="0" default="0"/>
-			<xs:element name="DI" type="xs:int" minOccurs="0" default="0"/>
-			<xs:element name="CI" type="xs:int" minOccurs="0" default="0"/>  			
+			<xs:element name="dichiarazioniDC">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="dc" type="moduli:AllegatoType" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="numero" type="xs:int" default="0" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dichiarazioniDI">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="pin2_4_di" type="moduli:AllegatoType" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="numero" type="xs:int" default="0" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dichiarazioniCI">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="pin2_5_ci" type="moduli:AllegatoType" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="numero" type="xs:int" default="0" />
+				</xs:complexType>
+			</xs:element>			
 		</xs:sequence>
 	</xs:complexType>
 
 	
-	
-	<!-- Allegato 2.2 - CERTIFICAZIONE REI -->
-	<xs:complexType name="allegato2_2CertReiType">
-		<xs:complexContent>
-			<xs:extension base="moduli:AllegatoType">
-				<xs:sequence>
-					<xs:annotation>
-						<xs:documentation>
-							Allegato 2.2 Certificazione REI
-						</xs:documentation>
-					</xs:annotation>
-					<xs:sequence>
-						<xs:element name="rifPraticaVVF" type="xs:int"/>
-						<xs:element name="datiProfessionista" type="pincommon:ProfessionistaAntincendioType"/>
-						<xs:element name="datiContattoProfessionista" type="pincommon:ProfessionistaDatiContattoType"/>
-						
-						<!-- Attività --> 
-						<xs:element name="attivitaTipologia" type="xs:string"/>
-						<xs:element name="attivitaDescrizione" type="xs:string"/>
-						<xs:element name="attivitaSede" type="pincommon:SedeType"/>
-						<!-- Proprietà --> 
-						<xs:element name="proprietaNome" type="xs:string"/>
-						<xs:element name="proprietaSede" type="pincommon:SedeType"/>
-						 						 
-						<xs:element name="numPagineCertificazione" type="xs:int"/>
-						<xs:element name="numElaboratiGrafici" type="xs:int"/>
-						
-						<!-- TABELLA DEGLI ELEMENTI CERTIFICATI AI FINI DELLA RESISTENZA AL FUOCO --> 
-						<xs:element name="tabellaElementiCertificatiREI" type="pinscia:TabellaElementiCertificatiREIType" minOccurs="0" maxOccurs="unbounded"/>
-					</xs:sequence>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	
-	<xs:complexType name="TabellaElementiCertificatiREIType">
-		<xs:sequence>
-			<xs:element name="nrIdentificativo" type="xs:string"/><!-- Verifica Codice Numerico o AlphaN -->
-			<xs:element name="elementoTipoPosizione" type="xs:string"/>
-			<xs:element name="classeREI" type="xs:string"/>
-			<xs:element name="elementoTipoDescrizione" type="xs:string"/>
-			
-			<xs:choice>
-				<xs:element name="metodoTabellare" type="basic:EmptyType" />
-				<xs:element name="metodoSperimentale" type="basic:EmptyType" />
-				<xs:element name="metodoAnalitico" type="basic:EmptyType" />
-			</xs:choice>
-
-			<xs:element name="descrizioneAllegati" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-		</xs:sequence>
-	</xs:complexType>
-	
-	
-
-	<!-- Allegato 2.3 - DICHIARAZIONE PRODOTTI -->
-	<xs:complexType name="allegato2_3DichProdottoType">
-		<xs:complexContent>
-			<xs:extension base="moduli:AllegatoType">
-				<xs:sequence>
-					<xs:annotation>
-						<xs:documentation>
-							Allegato 2.3 Dichiarazione Prodotto
-						</xs:documentation>
-					</xs:annotation>
-
-				
-					<xs:element name="rifPraticaVVF" type="xs:int"/>
-					<xs:element name="datiProfessionista" type="pincommon:ProfessionistaAntincendioType"/>
-					<xs:element name="datiContattoProfessionista" type="pincommon:ProfessionistaDatiContattoType"/>
-					
-					<!-- Attività  --> 
-					<xs:element name="identificazioneEdificio" type="pincommon:ImpiantoType"/>
-			
-					<!--  DICHIARA CHE I PRODOTTI IMPIEGATI RISPONDONO ALLE PRESTAZIONI RICHIESTE -->
-					<xs:element name="numPagineCertificazione" type="xs:int"/>
-					<xs:element name="numElaboratiGrafici" type="xs:int"/>
-					<xs:element name="tabellaProdottiImpiegati" type="pinscia:TabellaProdottiImpiegatiType"/>
-					<xs:element name="elencoAllegati" type="pinscia:elencoAllegatiType"/>
-				</xs:sequence>		
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	
-	
-	
-	<!-- TABELLA DEI PRODOTTI IMPIEGATI -->
-	<xs:complexType name="TabellaProdottiImpiegatiType">
-		<xs:sequence>
-			<xs:element name="nrIdentificativo" type="xs:string"/><!-- Verifica Codice Numerico o AlphaN -->
-			<xs:element name="classeReazioneFuoco" type="xs:string"/>
-			<xs:element name="classeResistenzaFuoco" type="xs:string"/>
-			<xs:element name="datiCommercialiProduttore" type="xs:string"/>
-		</xs:sequence>
-	</xs:complexType>
-	
-			
-	<!-- TABELLA DEI PRODOTTI IMPIEGATI -->
-	<xs:complexType name="elencoAllegatiType">
-		<xs:sequence>
-		<xs:element name="conformitaProdotto" type="basic:EmptyType" />
-		<xs:element name="dichiarazioneConformitaCE" type="basic:EmptyType" />
-		<xs:element name="certificatoProva" type="basic:EmptyType" />
-		<xs:element name="rapportiProva" type="basic:EmptyType" />
-		<xs:element name="dichiarazionePosaOpera" type="basic:EmptyType" />
-		<xs:element name="dichiarazionePrestazione" type="basic:EmptyType" />
-		<xs:element name="altriDocumenti" type="xs:string" />
-		</xs:sequence>	
-	</xs:complexType>
-				
 
 	
-	<!-- Allegato 2.4 - DICHIARAZIONE DI CORRETTA INSTALLAZIONE E FUNZIONAMENTO DELL' IMPIANTO -->
-	<xs:complexType name="allegato2_4DichImpiantoType">
-		<xs:complexContent>
-			<xs:extension base="moduli:AllegatoType">
-				<xs:sequence>
-					<xs:annotation>
-						<xs:documentation>
-							Allegato 2.4 Dichiarazione Impianto
-						</xs:documentation>
-					</xs:annotation>
-					<xs:sequence>
-						<xs:element name="rifPraticaVVF" type="xs:int"/>
-
-						<xs:element name="datiAnagraficiInstallatore" type="pincommon:PersonaAnagraficaType"/>
-						<xs:element name="inQualitaDi" type="xs:string"/>
-						<xs:element name="datiAnagraficiImpresa" type="aggregate:ImpresaAnagraficaType"/>
-						
-						<xs:element name="impiantoDomandaLavoriDi" type="pincommon:ImpiantoDomandaLavoriDiType"/>
-											
-						<xs:element name="commissionatoDa" 	type="xs:string" />
-						
-						<!-- Impianto - Tipologia e Sede di installazione --> 
-						<xs:element name="identificazioneImpianto" type="pincommon:ImpiantoType"/>
-												
-						<!-- Impianto tipologia --> 
-						<xs:element name="impiantoTipologiaPin" type="pincommon:ImpiantoTipologiaPinType"/>
-						
-						<!-- Descrizione --> 
-						<xs:element name="denominazioneImpianto" type="xs:string"/>
-						<xs:element name="descrizioneImpianto" type="xs:string"/>
-						
-						<!-- Dichiarazioni -->
-						<xs:element name="progettoNomeProgettista" type="xs:string"/>
-						<xs:element name="progettoDataProgetto" type="xs:date"/>
-						<xs:element name="progettistaAlboProfessionale" type="pincommon:AlboProfessionaleType"/>
-						<xs:element name="progettoNormeApplicate" type="xs:string"/>
-						
-						<xs:element name="allegatiAltro" type="xs:string"/>
-
-					</xs:sequence>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	
-	<!-- Allegato 2.5 - CERTIFICAZIONE DI RISPONDENZA E DI CORRETTO FUNZIONAMENTO DELL’IMPIANTO -->
-	<xs:complexType name="allegato2_5CertImpiantoType">
-		<xs:complexContent>
-			<xs:extension base="moduli:AllegatoType">
-				<xs:sequence>
-					<xs:annotation>
-						<xs:documentation>
-							Allegato 2.5 Certificazione Impianto
-						</xs:documentation>
-					</xs:annotation>
-					<xs:sequence>
-						<xs:element name="rifPraticaVVF" type="xs:int"/>
-
-						<xs:element name="datiProfessionista" type="pincommon:ProfessionistaAntincendioType"/>
-						<xs:element name="datiContattoProfessionista" type="pincommon:ProfessionistaDatiContattoType"/>
-						
-						<xs:element name="impiantoDomandaLavoriDi" type="pincommon:ImpiantoDomandaLavoriDiType"/>
-						
-						<!-- Impianto - Tipologia e Sede di installazione --> 
-						<xs:element name="identificazioneImpianto" type="pincommon:ImpiantoType"/>
-												
-						<!-- Impianto tipologia --> 
-						<xs:element name="impiantoTipologiaPin" type="pincommon:ImpiantoTipologiaPinType"/>
-						
-						<!-- Descrizione --> 
-						<xs:element name="denominazioneImpianto" type="xs:string"/>
-						<xs:element name="descrizioneImpianto" type="xs:string"/>
-						
-						<!-- Certifica --> 
-						<xs:element name="disposizioniPinVVF" type="xs:string"/>
-						<xs:element name="normeBuonaTecnica" type="xs:string"/>
-					</xs:sequence>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	
-	<!-- Allegato 2.6 - Dichiarazione di non aggravio rischio --> 
+	<!-- Allegato PIN 2.6 - Dichiarazione di non aggravio rischio --> 
 	<xs:complexType name="allegato2_6DichNonAggravioRischioType">
 		<xs:complexContent>
 			<xs:extension base="moduli:AllegatoType">
-				<xs:sequence>
+				<xs:sequence minOccurs="0">
 					<xs:annotation>
 						<xs:documentation>
 							Allegato 2.6 Dichiarazione di non aggravio rischio
