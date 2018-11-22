@@ -102,7 +102,7 @@
 						<xs:element name="rifPraticaVVF" type="xs:int"/>
 						<xs:element name="datiProfessionista" type="pincommon:ProfessionistaType"/>
 						<xs:element name="datiContattoProfessionista" type="pincommon:ProfessionistaDatiContattoType"/>
-						<xs:element name="domandaLavoriDi" type="pincommon:DomandaLavoriDiType" />
+						<xs:element name="lavoriDi" type="pincommon:LavoriDiType" />
 						<xs:element name="attivita" type="pincommon:AttivitaType"/>
 						<xs:element name="codiceAttivita" type="pincommon:CodiceAttivitaType" maxOccurs="unbounded"/>
 						<!-- . -->
@@ -146,7 +146,7 @@
 				</xs:complexType>
 			</xs:element>
 			
-			<xs:element name="pin2_6DichNonAggravioRischio" type="pinscia:allegato2_6DichNonAggravioRischioType" minOccurs="0"/>
+			<xs:element name="pin2_6DichNonAggravioRischio" type="moduli:AllegatoType" minOccurs="0"/>
 			
 			<!-- 2. CERTIFICAZIONI DI ELEMENTI STRUTTURALI PORTANTI  -->
 			<xs:element name="pin2_2CertificazioniREI">
@@ -219,38 +219,6 @@
 		</xs:sequence>
 	</xs:complexType>
 
-	
-
-	
-	<!-- Allegato PIN 2.6 - Dichiarazione di non aggravio rischio --> 
-	<xs:complexType name="allegato2_6DichNonAggravioRischioType">
-		<xs:complexContent>
-			<xs:extension base="moduli:AllegatoType">
-				<xs:sequence minOccurs="0">
-					<xs:annotation>
-						<xs:documentation>
-							Allegato 2.6 Dichiarazione di non aggravio rischio
-						</xs:documentation>
-					</xs:annotation>
-					<xs:sequence>
-						<xs:element name="rifPraticaVVF" type="xs:int"/>
-
-						<xs:element name="datiProfessionista" type="pincommon:ProfessionistaAntincendioType"/>
-						<xs:element name="datiContattoProfessionista" type="pincommon:ProfessionistaDatiContattoType"/>
-						
-						<!-- Attività  --> 
-						<xs:element name="dichiarazioneNonAggravioRischio" type="pinscia:dichiarazioneNonAggravioRischioType"/>
-						<xs:element name="dataPresentazioneSCIA" type="xs:date" minOccurs="0" maxOccurs="unbounded"/>
-						<xs:element name="schedaSinteticaAggravioRischio" type="xs:string"/>			
-												
-						<!--  Eventuale documentazione -->
-						<xs:element name="documentazioneEventualeType" type="pincommon:AltraDocumentazioneType" minOccurs="0" maxOccurs="unbounded"/>
-					</xs:sequence>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	
 	<!--  Dichiarazione aggravio rischio -->
 	<xs:complexType name="dichiarazioneNonAggravioRischioType">
 		<xs:sequence>

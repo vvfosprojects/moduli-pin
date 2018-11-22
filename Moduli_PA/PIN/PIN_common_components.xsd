@@ -47,15 +47,18 @@
      	</xs:sequence>
      </xs:complexType>
     
-	<xs:complexType name="ProfessionistaAntincendioType">
-		<xs:annotation>
-			<xs:documentation>Tipo per specificare i dati del professionista antincendio</xs:documentation>
-		</xs:annotation>
-		<xs:sequence> 
-			<xs:element name="ProfessionistaType" type="pincommon:ProfessionistaType"/>     
-			<xs:element name="alboMinisteriale" type="xs:string"/>
-		</xs:sequence>
-	</xs:complexType>
+	<!--<xs:complexType name="ProfessionistaAntincendioType">
+		<xs:complexContent>
+			<xs:extension base="pincommon:ProfessionistaType">
+				<xs:annotation>
+					<xs:documentation>Tipo per specificare i dati del professionista antincendio</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>     
+					<xs:element name="alboMinisteriale" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>-->
        
         
 	<xs:complexType name="ProfessionistaDatiContattoType">
@@ -115,7 +118,7 @@
   		</xs:sequence>
   	</xs:complexType>
   
-	<xs:complexType name="DomandaLavoriDiType">
+	<xs:complexType name="LavoriDiType">
 	        <xs:annotation>
 	            <xs:documentation>Specifica il tipo di domanda in base all'attività</xs:documentation>
 	        </xs:annotation>
@@ -193,7 +196,6 @@
 			<xs:element name="importoVersamento" type="xs:decimal"/>
 		</xs:sequence>
 	</xs:complexType>	
-	
 	
 	
 	<xs:complexType name="AltraDocumentazioneType">

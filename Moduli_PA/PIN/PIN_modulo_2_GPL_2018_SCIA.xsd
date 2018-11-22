@@ -33,6 +33,8 @@
   					<xs:element name="sedeCustodiaFascicoloScia" type="pincommon:SedeCustodiaDocumentazioneType"/>
   					<xs:element name="distintaVersamento" type="pinsciagpl:DistintaVersamentoType"/>
   					<xs:element name="datiPerCorrispondenza" type="pincommon:CorrispondenzaType"  minOccurs="0"/>
+  					<xs:element name="dichiarazioneDittaDistributriceGPL" type="pinsciagpl:DichiarazioneDittaDistributriceGPL" minOccurs="0"/>
+  					
   					<!-- ALLEGATI -->
   					<xs:element name="tabellaAllegati" type="pinsciagpl:TabellaAllegatiType"/> 
   				</xs:sequence>
@@ -136,48 +138,89 @@
 		</xs:sequence>
 	</xs:complexType> 
   	 
+  	 
+	<xs:complexType name="DichiarazioneDittaDistributriceGPL">
+		<xs:sequence>
+			<xs:element name="dichiarante">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="cognome" type="xs:string"/>
+						<xs:element name="nome" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dittaDistributrice" type="aggregate:ImpresaAnagraficaType"/>
+		</xs:sequence>
+	</xs:complexType> 
+  	 
+
+  	 
 	<!-- Allegati -->
 	<xs:complexType name="TabellaAllegatiType">
 		<xs:sequence>
-			<xs:element name="allegato2_1GplAttestazione" type="pinsciagpl:Allegato2_1GplAttestazioneType"  />
-			<xs:element name="allegato2_7GplDichiarazioneDiInstallazione" type="pinsciagpl:Allegato2_7GplDichiarazioneDiInstallazioneType"  />
+			<xs:element name="pin2_1GplAttestazione" type="pinsciagpl:pin2_1GplAttestazioneType"  />
+			
 		</xs:sequence>
 	</xs:complexType>
   
 	<!-- Allegato 2.1 - ATTESTAZIONE -->
-	<xs:complexType name="Allegato2_1GplAttestazioneType">
+	<xs:complexType name="pin2_1GplAttestazioneType">
+		<xs:annotation>
+			<xs:documentation>
+				Allegato 2.1 ATTESTAZIONE AI FINI DELLA SICUREZZA ANTINCENDIO
+			</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="moduli:AllegatoType">
-				<xs:sequence>
-					<xs:annotation>
-						<xs:documentation>
-							Allegato 2.1 ATTESTAZIONE
-						</xs:documentation>
-					</xs:annotation>
-					<xs:sequence>
-						<xs:element name="rifPraticaVVF" type="xs:int"/>
-					</xs:sequence>
+				<xs:sequence minOccurs="0">
+					<xs:element name="rifPraticaVVF" type="xs:int"/>
+					<xs:element name="datiProfessionista" type="pincommon:ProfessionistaType"/>
+					<xs:element name="datiRuoloProfessionista">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="inQualitaDi" type="xs:string" />
+								<xs:element name="dellaDitta" type="xs:string" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="datiContattoProfessionista" type="pincommon:ProfessionistaDatiContattoType"/>
+					<xs:element name="lavoriDi" type="pincommon:LavoriDiType" />
+					<xs:element name="sedeAttivita" type="pincommon:SedeType"/>
+					<!-- DISTINTA DELLA DOCUMENTAZIONE TECNICA ALLEGATA -->
+					<xs:element name="distintaDocumentazioneAllegata" type="pinsciagpl:distintaDocumentazioneAllegataType" />
+					
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	
-	<!-- Allegato 2.7 - Dichiarazione Di Installazione --> 
-	<xs:complexType name="Allegato2_7GplDichiarazioneDiInstallazioneType">
-		<xs:complexContent>
-			<xs:extension base="moduli:AllegatoType">
-				<xs:sequence>
-					<xs:annotation>
-						<xs:documentation>
-							Allegato 2.7 Dichiarazione Di Installazione
-						</xs:documentation>
-					</xs:annotation>
+	<xs:complexType name="distintaDocumentazioneAllegataType">
+		<xs:sequence>			
+			<!-- 1. DOCUMENTAZIONE TECNICA -->
+			<xs:element name="planimetriaDeposito">
+				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="rifPraticaVVF" type="xs:int"/>
+						<xs:element name="planimetria" type="moduli:AllegatoType" minOccurs="0" maxOccurs="unbounded"/>
 					</xs:sequence>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
+					<xs:attribute name="scalaNum" type="xs:int" fixed="1" />
+					<xs:attribute name="scalaDenum" type="xs:int" default="1000" />
+					<!-- Vincolo Complesso scalaNum:scalaDenum non inferiore 1:1000 -->
+				</xs:complexType>
+			</xs:element>
+			
+			<!-- 2. DICHIARAZIONE  -->
+			<xs:element name="allegato2_7GplDichiarazioneDiInstallazione" type="moduli:AllegatoType" >
+				<xs:annotation>
+					<xs:documentation>
+						Allegato PIN 2.7 GPL Dichiarazione Di Installazione
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		
+			<!-- 3. ALTRA EVENTUALE DOCUMENTAZIONE  -->	
+			<xs:element name="altraDocumentazioneallegata" type="pincommon:AltraDocumentazioneType"  minOccurs="0" maxOccurs="unbounded" />	
+			
+		</xs:sequence>
 	</xs:complexType>
  
 </xs:schema>
