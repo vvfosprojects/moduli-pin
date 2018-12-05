@@ -38,6 +38,9 @@
   					<xs:element name="distintaVersamento" type="pincommon:DistintaVersamentoType"/>
   					<xs:element name="datiPerCorrispondenza" type="pincommon:CorrispondenzaType"  minOccurs="0"/>
   					
+  					<!-- Delega -->
+  					<xs:element name="delegatoChiarimentiTecnici" type="pincommon:PersonaDelegataType" minOccurs="0"/>
+  					
   					<!-- ALLEGATI -->
   					<xs:element name="allegati">
   						<xs:complexType>

@@ -30,7 +30,7 @@
   				<xs:sequence>
   					<!-- CORPO DEL MODULO -->
 
-  					<xs:element name="domandaLavoriDi" type="pincommon:DomandaLavoriDiType" />
+  					<xs:element name="domandaLavoriDi" type="pincommon:LavoriDiType" />
   					<xs:element name="attivitaPrincipale" type="pincommon:AttivitaType"/>
   					<xs:element name="codiceAttivita" type="pincommon:CodiceAttivitaType" maxOccurs="unbounded"/>
   					<xs:element name="datiProfessionista" type="pincommon:ProfessionistaType"/>
@@ -47,6 +47,9 @@
   					<!-- Pagamento -->
   					<xs:element name="distintaVersamento" type="pincommon:DistintaVersamentoType"/>
   					<xs:element name="datiPerCorrispondenza" type="pincommon:CorrispondenzaType"  minOccurs="0"/>
+  				    
+  				    <!-- Delega -->
+  				    <xs:element name="delegatoChiarimentiTecnici" type="pincommon:PersonaDelegataType" minOccurs="0"/>
   				</xs:sequence>
   			</xs:extension>	
   		</xs:complexContent>
