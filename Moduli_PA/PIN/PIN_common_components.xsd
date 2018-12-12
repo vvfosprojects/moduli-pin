@@ -5,14 +5,12 @@
     xmlns:aggregate="http://www.agid.gov.it/AgID_aggregate_components"    
     xmlns:basic="http://www.agid.gov.it/AgID_basic_components"
     xmlns:enumeration="http://www.agid.gov.it/AgID_enumeration"
-    xmlns:isacvbc="http://www.w3.org/ns/corevocabulary/BasicComponents"
     xmlns:ccts="urn:un:unece:uncefact:documentation:2"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     
     targetNamespace="http://www.vigilfuoco.it/MODULI_PA/PIN/pin_common_components"
     elementFormDefault="qualified" attributeFormDefault="qualified" version="1.0.0">
 
-	<xs:import namespace="http://www.w3.org/ns/corevocabulary/BasicComponents" schemaLocation="../../AgID_Vocabularies/ISA_Core_Vocabularies/CoreVocabularies-BasicComponents-1.1.xsd"/>
 	
 
     <xs:import namespace="http://www.agid.gov.it/MODULI_PA/moduli_common_components" schemaLocation="../MODULI_common_components.xsd"/>
@@ -34,10 +32,8 @@
 	
 	<xs:complexType name="PersonaDelegataType">
 		<xs:sequence> 
-			
 			<xs:element name="titolo" type="xs:string" minOccurs="0"/>
-			<xs:element name="cognome" type="isacvbc:PersonFamilyNameType"/>
-			<xs:element name="nome" type="isacvbc:PersonGivenNameType"/>
+			<xs:group ref="aggregate:PersonaCoreGroup"/>
 			<xs:group ref="aggregate:ContattiFoniaGroup" minOccurs="0"/>
 			<xs:element name="domicilio" type="aggregate:IndirizzoType" minOccurs="0"/>
 		</xs:sequence> 
