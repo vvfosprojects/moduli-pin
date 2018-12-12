@@ -60,7 +60,7 @@
  	  		<xs:element name="rifProgettiApprovati" minOccurs="0">
   	  			<xs:complexType>
   	  				<xs:sequence>
-  	  					<xs:element name="protocolloProgetto" type="aggregate:ProtocolloType" maxOccurs="unbounded" /> 
+  	  					<xs:element name="protocolloProgetto" type="pinscia:ProtocolloType" maxOccurs="unbounded" /> 
   	  				</xs:sequence>
   	  			</xs:complexType>
   	  		</xs:element> 
@@ -78,7 +78,16 @@
   		</xs:sequence>
    	</xs:complexType>
   	  	   
-
+	<xs:complexType name="ProtocolloType">
+		<xs:annotation>
+			<xs:documentation>Tipo per specificare il numero e un data di protocollo</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>			
+			<xs:element name="numeroProtocollo" type="xs:string"/>
+			<xs:element name="dataRegistrazione" type="xs:date"/>
+		</xs:sequence>
+	</xs:complexType>	
+  	
  
 
 	<!-- Allegato 2.1 - ASSEVERAZIONE -->
