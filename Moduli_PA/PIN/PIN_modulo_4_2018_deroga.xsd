@@ -1,70 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema 
-	xmlns:pinderoga="http://www.vigilfuoco.it/MODULI_PA/PIN/modulo_4_2018_deroga"
-    xmlns:pincommon="http://www.vigilfuoco.it/MODULI_PA/PIN/pin_common_components"
-    xmlns:moduli="http://www.agid.gov.it/MODULI_PA/moduli_common_components"
-    xmlns:aggregate="http://www.agid.gov.it/AgID_aggregate_components"
-    xmlns:basic="http://www.agid.gov.it/AgID_basic_components"
-    xmlns:enumeration="http://www.agid.gov.it/AgID_enumeration"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    targetNamespace="http://www.vigilfuoco.it/MODULI_PA/PIN/modulo_4_2018_deroga"
-    elementFormDefault="qualified" attributeFormDefault="qualified" version="1.0.0">
-
+	xmlns:deroga="http://www.vigilfuoco.it/MODULI_PA/PIN/modulo_4_2018_deroga"
+	xmlns:pincommon="http://www.vigilfuoco.it/MODULI_PA/PIN/pin_common_components"
+	xmlns:moduli="http://www.agid.gov.it/MODULI_PA/moduli_common_components"
+	xmlns:aggregate="http://www.agid.gov.it/AgID_aggregate_components"
+	xmlns:basic="http://www.agid.gov.it/AgID_basic_components"
+	xmlns:enumeration="http://www.agid.gov.it/AgID_enumeration"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.vigilfuoco.it/MODULI_PA/PIN/modulo_4_2018_deroga"
+	elementFormDefault="qualified" attributeFormDefault="qualified" version="1.0.0">
+	
 	<xs:import namespace="http://www.vigilfuoco.it/MODULI_PA/PIN/pin_common_components" schemaLocation="PIN_common_components.xsd"/>    
-    <xs:import namespace="http://www.agid.gov.it/MODULI_PA/moduli_common_components" schemaLocation="../MODULI_common_components.xsd"/>
-    <xs:import namespace="http://www.agid.gov.it/AgID_basic_components" schemaLocation="../../AgID_Vocabularies/AgID_basic_components.xsd"/>
-    <xs:import namespace="http://www.agid.gov.it/AgID_aggregate_components" schemaLocation="../../AgID_Vocabularies/AgID_aggregate_components.xsd"/>
-    <xs:import namespace="http://www.agid.gov.it/AgID_enumeration" schemaLocation="../../AgID_Vocabularies/AgID_enumeration.xsd"/>
-
+	<xs:import namespace="http://www.agid.gov.it/MODULI_PA/moduli_common_components" schemaLocation="../MODULI_common_components.xsd"/>
+	<xs:import namespace="http://www.agid.gov.it/AgID_basic_components" schemaLocation="../../AgID_Vocabularies/AgID_basic_components.xsd"/>
+	<xs:import namespace="http://www.agid.gov.it/AgID_aggregate_components" schemaLocation="../../AgID_Vocabularies/AgID_aggregate_components.xsd"/>
+	<xs:import namespace="http://www.agid.gov.it/AgID_enumeration" schemaLocation="../../AgID_Vocabularies/AgID_enumeration.xsd"/>
+	
 	<xs:annotation>
-        <xs:documentation>
-        	PIN 4-2018 deroga          
-        </xs:documentation>
-    </xs:annotation>
- 
-	<xs:element name="ModuloDeroga" type="pinderoga:ModuloDerogaType"/>
+		<xs:documentation>
+			PIN 4-2018 deroga          
+		</xs:documentation>
+	</xs:annotation>
+	
+	<xs:element name="ModuloDeroga" type="deroga:ModuloDerogaType"/>
 	
 	<xs:complexType name="ModuloDerogaType" >
-  		<xs:complexContent>
-  			<xs:extension base="pincommon:ModuloBaseType">
-  				<xs:sequence>
-  					<!-- CORPO DEL MODULO -->
-  					<xs:element name="attivitaPrincipale" type="pincommon:AttivitaType"/>
- 					<xs:choice>
-  						<xs:element name="attivitaOggettodiDerogaIndividuate" type="pincommon:CodiceAttivitaType" maxOccurs="unbounded"/>
-  						<xs:element name="attivitaOggettodiDerogaNonIndividuate" type="basic:EmptyType"  minOccurs="0">
-	  						<xs:annotation>
-	  							<xs:documentation>Non risultano  riportate nell'Allegato I al DPR 151 del 01/08/2011</xs:documentation>
-	  						</xs:annotation>
-  						</xs:element>
-  					</xs:choice>
-  					<xs:element name="datiProfessionista" type="pincommon:ProfessionistaType"/>
-  					<xs:element name="datiContattoProfessionista" type="pincommon:ProfessionistaDatiContattoType"/>
-  					
-  					<!-- DISPOSIZIONI NORMATIVE ALLE QUALI SI RICHIEDE DEROGA -->
-  					<xs:element name="disposizioniNormativeDeroga" type="pinderoga:disposizioniNormativeDerogaType" maxOccurs="unbounded">
-  						<xs:annotation>
-  							<xs:documentation>correlato con element: attivitaOggettodiDerogaIndividuate</xs:documentation>
-  						</xs:annotation>
-  					</xs:element>
-  					
-  					<xs:element name="RtoRtV" type="basic:EmptyType"  minOccurs="0"/>
-  					<xs:element name="numFascicoliRelazioneTecnica" type="xs:int"/>
-  					<xs:element name="numElaboratiGrafici" type="xs:int"/>
-  					
-  					<!-- Pagamento -->
-  					<xs:element name="distintaVersamento" type="pincommon:DistintaVersamentoType"/>
-  					<xs:element name="datiPerCorrispondenza" type="pincommon:CorrispondenzaType"  minOccurs="0"/>
-  					
-  					<xs:element name="numPagineIStanza" type="xs:int"/>
-  					
-  					<!-- Delega -->
-  					<xs:element name="delegatoChiarimentiTecnici" type="pincommon:PersonaDelegataType" minOccurs="0"/>
-  				</xs:sequence>
-  			</xs:extension>	
-  		</xs:complexContent>
-  	</xs:complexType>
-  
+		<xs:complexContent>
+			<xs:extension base="pincommon:ModuloBaseType">
+				<xs:sequence>
+					<!-- CORPO DEL MODULO -->
+					<xs:element name="attivitaPrincipale" type="pincommon:AttivitaType"/>
+					<xs:choice>
+						<xs:element name="attivitaOggettodiDerogaIndividuate" type="pincommon:CodiceAttivitaType" maxOccurs="unbounded"/>
+						<xs:element name="attivitaOggettodiDerogaNonIndividuate" type="basic:EmptyType"  minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Non risultano  riportate nell'Allegato I al DPR 151 del 01/08/2011</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:choice>
+					<xs:element name="datiProfessionista" type="pincommon:ProfessionistaType"/>
+					<xs:element name="datiContattoProfessionista" type="pincommon:ProfessionistaDatiContattoType"/>
+					
+					<!-- DISPOSIZIONI NORMATIVE ALLE QUALI SI RICHIEDE DEROGA -->
+					<xs:element name="disposizioniNormativeDeroga" type="deroga:disposizioniNormativeDerogaType" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>correlato con element: attivitaOggettodiDerogaIndividuate</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					
+					<xs:element name="RtoRtV" type="basic:EmptyType"  minOccurs="0"/>
+					<xs:element name="numFascicoliRelazioneTecnica" type="xs:int"/>
+					<xs:element name="numElaboratiGrafici" type="xs:int"/>
+					
+					<!-- Pagamento -->
+					<xs:element name="distintaVersamento" type="pincommon:DistintaVersamentoType"/>
+					<xs:element name="datiPerCorrispondenza" type="pincommon:CorrispondenzaType"  minOccurs="0"/>
+					
+					<xs:element name="numPagineIStanza" type="xs:int"/>
+					
+					<!-- Delega -->
+					<xs:element name="delegatoChiarimentiTecnici" type="pincommon:PersonaDelegataType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>	
+		</xs:complexContent>
+	</xs:complexType>
+	
 	<xs:complexType name="disposizioniNormativeDerogaType">
 		<xs:sequence>
 			<xs:element name="attivita" type="xs:int"  minOccurs="1" />
