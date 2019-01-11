@@ -36,7 +36,7 @@
   					<xs:sequence ><!-- Vericare se possible controllare che una delle tre opzioni sia presente -->
 	  					<xs:element name="rifAsseverazione" type="basic:EmptyType"  minOccurs="0" />
 	  					<xs:element name="rifNoAsseverazione" type="basic:EmptyType"  minOccurs="0" />
-	  					<xs:element name="rifAltraDocumentazione" type="xs:string"  minOccurs="0" />
+  						<xs:element name="rifAltraDocumentazione" type="xs:string"  minOccurs="0" maxOccurs="unbounded" />
   					</xs:sequence>
   					<xs:element name="distintaVersamento" type="pincommon:DistintaVersamentoType"/>
   					<xs:element name="datiPerCorrispondenza" type="pincommon:CorrispondenzaType"  minOccurs="0"/>
