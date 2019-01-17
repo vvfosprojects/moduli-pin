@@ -29,7 +29,7 @@
   			<xs:extension base="pincommon:ModuloBaseType">
   				<xs:sequence>
   					<!-- CORPO DEL MODULO -->
-  					
+  				    <xs:element name="lavoriDi" type="pincommon:LavoriDiType" />
   					<xs:element name="attivitaPrincipale" type="pincommon:AttivitaType"/>
   					<xs:element name="codiceAttivita" type="pincommon:CodiceAttivitaType" maxOccurs="unbounded"/>
   					<xs:element name="datiProfessionista" type="pincommon:ProfessionistaType"/>
@@ -41,8 +41,23 @@
   					<xs:element name="tipoIntervento" type="xs:string" minOccurs="0"/>
   					<xs:element name="indicazazioniPinIstanza" type="xs:string"  minOccurs="0"/>
   					
-  					<xs:element name="numFascicoliRelazioneTecnica" type="xs:int"/>
-  					<xs:element name="numElaboratiGrafici" type="xs:int"/>
+  				    <xs:element name="relazioneTecnica">
+  				        <xs:complexType>
+  				            <xs:sequence>
+  				                <xs:element name="fascicoloRelazioneTecnica" type="moduli:AllegatoType" minOccurs="0" maxOccurs="unbounded"/>
+  				            </xs:sequence>
+  				            <xs:attribute name="numero" type="xs:int" default="0" />
+  				        </xs:complexType>
+  				    </xs:element>
+  				    
+  				    <xs:element name="elaboratiGrafici">
+  				        <xs:complexType>
+  				            <xs:sequence>
+  				                <xs:element name="elaboratoGrafico" type="moduli:AllegatoType" minOccurs="0" maxOccurs="unbounded"/>
+  				            </xs:sequence>
+  				            <xs:attribute name="numero" type="xs:int" default="0" />
+  				        </xs:complexType>
+  				    </xs:element>
   					
   					<!-- Pagamento -->
   					<xs:element name="distintaVersamento" type="pincommon:DistintaVersamentoType"/>
