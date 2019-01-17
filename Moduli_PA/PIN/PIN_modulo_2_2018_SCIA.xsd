@@ -29,7 +29,7 @@
   			<xs:extension base="pincommon:ModuloBaseType">
   				<xs:sequence>
   					<!-- CORPO DEL MODULO -->
-  					<xs:element name="riferimentoProgetto" type="pinscia:RiferimentoProgettoType" />
+  					<xs:element name="riferimentoProgetto" type="pincommon:RiferimentoProgettoType" />
   					<!-- SEGNALA -->
   					<xs:element name="attivita" type="pincommon:AttivitaType"/>
   					<xs:element name="codiceAttivita" type="pincommon:CodiceAttivitaType"  maxOccurs="unbounded"/>
@@ -54,6 +54,7 @@
   		</xs:complexContent>
   	</xs:complexType>
     	
+<<<<<<< HEAD
   	<xs:complexType name="RiferimentoProgettoType">
   	  	<xs:sequence>
   	  	<!-- <xs:choice> -->
@@ -81,6 +82,8 @@
 	
  
 
+=======
+>>>>>>> ecde133ac23b0a0370565ac412db58a97554373e
 	<!-- Allegato 2.1 - ASSEVERAZIONE -->
 	<xs:complexType name="pin2_1AsseverazioneType">
 		<xs:complexContent>
