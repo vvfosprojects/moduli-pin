@@ -38,7 +38,7 @@
 							</xs:annotation>
 						</xs:element>
 					</xs:choice>
-					<xs:element name="datiProfessionista" type="pincommon:ProfessionistaType"/>
+					<xs:element name="datiProfessionista" type="pincommon:ProfessionistaAntincendioType"/>
 					<xs:element name="datiContattoProfessionista" type="pincommon:ProfessionistaDatiContattoType"/>
 					
 					<!-- DISPOSIZIONI NORMATIVE ALLE QUALI SI RICHIEDE DEROGA -->
@@ -49,8 +49,24 @@
 					</xs:element>
 					
 					<xs:element name="RtoRtV" type="basic:EmptyType"  minOccurs="0"/>
-					<xs:element name="numFascicoliRelazioneTecnica" type="xs:int"/>
-					<xs:element name="numElaboratiGrafici" type="xs:int"/>
+					
+					<xs:element name="relazioneTecnica">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="fascicoloRelazioneTecnica" type="moduli:AllegatoType" minOccurs="0" maxOccurs="unbounded"/>
+							</xs:sequence>
+							<xs:attribute name="numero" type="xs:int" default="0" />
+						</xs:complexType>
+					</xs:element>
+					
+					<xs:element name="elaboratiGrafici">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="elaboratoGrafico" type="moduli:AllegatoType" minOccurs="0" maxOccurs="unbounded"/>
+							</xs:sequence>
+							<xs:attribute name="numero" type="xs:int" default="0" />
+						</xs:complexType>
+					</xs:element>
 					
 					<!-- Pagamento -->
 					<xs:element name="distintaVersamento" type="pincommon:DistintaVersamentoType"/>

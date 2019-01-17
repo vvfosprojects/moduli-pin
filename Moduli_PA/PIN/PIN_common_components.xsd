@@ -58,7 +58,7 @@
      	</xs:sequence>
      </xs:complexType>
     
-	<!--<xs:complexType name="ProfessionistaAntincendioType">
+	<xs:complexType name="ProfessionistaAntincendioType">
 		<xs:complexContent>
 			<xs:extension base="pincommon:ProfessionistaType">
 				<xs:annotation>
@@ -69,7 +69,7 @@
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
-	</xs:complexType>-->
+	</xs:complexType>
        
         
 	<xs:complexType name="ProfessionistaDatiContattoType">
