@@ -218,6 +218,48 @@
 		<xs:attribute name="numero" type="xs:int" default="0" />
 	</xs:complexType>
 	
+	<xs:complexType name="RiferimentoProgettoType">
+		<xs:sequence>
+			<!-- <xs:choice> -->
+			<xs:element name="rifProgettiApprovati" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="protocolloProgetto" type="aggregate:ProtocolloType" maxOccurs="unbounded" /> 
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element> 
+			<xs:element name="rifDocumentazioneTecnicaCatA" type="basic:EmptyType"  minOccurs="0" /> 
+			<xs:element name="rifDocumentazioneTecnicaModificheArt4-2011" 	type="basic:EmptyType"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						alla documentazione tecnica di progetto di cui alla asseverazione allegata
+						(per attività di cat. A,B,C in caso di modifiche di cui art.4, comma 6, del DPR 01/08/2011 n.151, 
+						che non comportino aggravio delle preesistenti condizioni di sicurezza)
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!-- <xs:choice> -->
+		</xs:sequence>
+	</xs:complexType>
 	
+	<xs:complexType name="AspettiPINType">
+		<xs:sequence>
+			<xs:element name="ubicazione" type="basic:EmptyType"  minOccurs="0" />
+			<xs:element name="comunicazioni" type="basic:EmptyType"  minOccurs="0" />
+			<xs:element name="accessoArea" type="basic:EmptyType"  minOccurs="0" />
+			<xs:element name="caratteristicheCostruttive" type="basic:EmptyType"  minOccurs="0" />
+			<xs:element name="resistenzaFuoco" type="basic:EmptyType"  minOccurs="0" />
+			<xs:element name="reazioneFuoco" type="basic:EmptyType"  minOccurs="0" />
+			<xs:element name="compartimentazione" type="basic:EmptyType"  minOccurs="0" />
+			<xs:element name="vieEsodo" type="basic:EmptyType"  minOccurs="0" />
+			<xs:element name="controlloFumi" type="basic:EmptyType"  minOccurs="0" />
+			<xs:element name="rischioSpecifico" type="basic:EmptyType"  minOccurs="0" />
+			<xs:element name="impiantiElettriciSicurezza" type="basic:EmptyType"  minOccurs="0" />
+			<xs:element name="estizioneIncendi" type="basic:EmptyType"  minOccurs="0" />
+			<xs:element name="impiantiRilevazioneSegnalazione" type="basic:EmptyType"  minOccurs="0" />
+			<xs:element name="segnaleticaSicurezza" type="basic:EmptyType"  minOccurs="0" />
+			<xs:element name="aspettPinAltro" type="xs:string"  minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
 	
 </xs:schema>
