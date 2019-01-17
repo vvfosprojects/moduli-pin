@@ -179,7 +179,7 @@
 			</xs:element> 
 			
 			<!-- 5. ALTRA EVENTUALE DOCUMENTAZIONE  -->	
-			<xs:element name="altraDocumentazioneallegata" type="pincommon:AltraDocumentazioneType"  minOccurs="0" maxOccurs="unbounded" />	
+			<xs:element name="altraDocumentazioneAllegata" type="pincommon:AltraDocumentazioneType"  minOccurs="0" maxOccurs="unbounded" />	
 			
 		</xs:sequence>
 	</xs:complexType>
