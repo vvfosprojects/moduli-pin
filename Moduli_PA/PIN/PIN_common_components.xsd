@@ -245,8 +245,8 @@
 	<xs:complexType name="AspettiPINType">
 		<xs:sequence>
 			<xs:element name="ubicazione" type="basic:EmptyType"  minOccurs="0" />
-			<xs:element name="comunicazioni" type="basic:EmptyType"  minOccurs="0" />
-			<xs:element name="accessoArea" type="basic:EmptyType"  minOccurs="0" />
+			<xs:element name="comunicazioniEseparazioni" type="basic:EmptyType"  minOccurs="0" />
+			<xs:element name="accessoAreaMezziSoccorso" type="basic:EmptyType"  minOccurs="0" />
 			<xs:element name="caratteristicheCostruttive" type="basic:EmptyType"  minOccurs="0" />
 			<xs:element name="resistenzaFuoco" type="basic:EmptyType"  minOccurs="0" />
 			<xs:element name="reazioneFuoco" type="basic:EmptyType"  minOccurs="0" />
@@ -255,10 +255,11 @@
 			<xs:element name="controlloFumi" type="basic:EmptyType"  minOccurs="0" />
 			<xs:element name="rischioSpecifico" type="basic:EmptyType"  minOccurs="0" />
 			<xs:element name="impiantiElettriciSicurezza" type="basic:EmptyType"  minOccurs="0" />
-			<xs:element name="estizioneIncendi" type="basic:EmptyType"  minOccurs="0" />
+			<xs:element name="illuminazioneSicurezza" type="basic:EmptyType"  minOccurs="0" />
+			<xs:element name="mezziEstizioneIncendi" type="basic:EmptyType"  minOccurs="0" />
 			<xs:element name="impiantiRilevazioneSegnalazione" type="basic:EmptyType"  minOccurs="0" />
 			<xs:element name="segnaleticaSicurezza" type="basic:EmptyType"  minOccurs="0" />
-			<xs:element name="aspettPinAltro" type="xs:string"  minOccurs="0" />
+			<xs:element name="altro" type="xs:string"  minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 	
