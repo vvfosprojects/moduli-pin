@@ -29,12 +29,17 @@
   			<xs:extension base="pincommon:ModuloBaseType">
   				<xs:sequence>
   					<!-- CORPO DEL MODULO -->
-  					<xs:element name="domandaLavoriDi" type="pincommon:LavoriDiType" />
-  					<xs:element name="attivitaPrincipale" type="pincommon:AttivitaType"/>
+  					<xs:element name="attivita" type="pincommon:AttivitaType"/>
   					<xs:element name="codiceAttivita" type="pincommon:CodiceAttivitaType" maxOccurs="unbounded"/>
-  					<xs:element name="riferimentoProgetto" type="pincommon:RiferimentoProgettoType" />
+  				    <xs:element name="rifProgettiApprovati" minOccurs="0">
+  				        <xs:complexType>
+  				            <xs:sequence>
+  				                <xs:element name="protocolloProgetto" type="aggregate:ProtocolloType" maxOccurs="unbounded" /> 
+  				            </xs:sequence>
+  				        </xs:complexType>
+  				    </xs:element> 
   					<xs:element name="aspettiPrevenzioneIncendi" type="pincommon:AspettiPINType"/>
-  					<xs:element name="rifAltraDocumentazione" type="xs:string"  minOccurs="0" maxOccurs="unbounded" />
+  				    <xs:element name="altraDocumentazioneAllegata" type="pincommon:AltraDocumentazioneType"  minOccurs="0" maxOccurs="unbounded" />	
   					<!-- Pagamento -->
   					<xs:element name="distintaVersamento" type="pincommon:DistintaVersamentoType"/>
   					<xs:element name="datiPerCorrispondenza" type="pincommon:CorrispondenzaType"  minOccurs="0"/>

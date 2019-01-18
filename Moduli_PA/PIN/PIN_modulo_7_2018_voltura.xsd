@@ -30,7 +30,7 @@
   				<xs:sequence>
   					<!-- CORPO DEL MODULO -->
   					<xs:element name="titoloRiferimentiSubentro" type="xs:string"/>
-  					<xs:element name="attivitaPrincipale" type="pincommon:AttivitaType"/>
+  					<xs:element name="attivita" type="pincommon:AttivitaType"/>
   					<xs:element name="attivitaRifPraticaVVF" type="xs:int"/>
   					<xs:element name="codiceAttivita" type="pincommon:CodiceAttivitaType" maxOccurs="unbounded"/>
   					<xs:element name="sedeCustodiaFascicoloAttivitaAltroIndirizzo" type="pincommon:SedeCustodiaDocumentazioneType" minOccurs="0"/>
