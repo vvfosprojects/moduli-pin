@@ -34,8 +34,10 @@
   					<xs:element name="attivitaPrincipale" type="pincommon:AttivitaType"/>
   					<xs:element name="codiceAttivita" type="pincommon:CodiceAttivitaType" maxOccurs="unbounded"/>
   					<xs:sequence ><!-- Vericare se possible controllare che una delle tre opzioni sia presente -->
-	  					<xs:element name="rifAsseverazione" type="basic:EmptyType"  minOccurs="0" />
-	  					<xs:element name="rifNoAsseverazione" type="basic:EmptyType"  minOccurs="0" />
+	  					<xs:choice>
+	  					    <xs:element name="rifAsseverazione" type="basic:EmptyType"  minOccurs="0" />
+	  					    <xs:element name="rifNoAsseverazione" type="basic:EmptyType"  minOccurs="0" />
+	  					</xs:choice>
   						<xs:element name="rifAltraDocumentazione" type="xs:string"  minOccurs="0" maxOccurs="unbounded" />
   					</xs:sequence>
   					<xs:element name="distintaVersamento" type="pincommon:DistintaVersamentoType"/>

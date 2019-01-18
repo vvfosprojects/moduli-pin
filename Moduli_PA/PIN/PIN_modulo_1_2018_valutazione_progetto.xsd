@@ -41,9 +41,26 @@
   					<xs:element name="tipoIntervento" type="xs:string" minOccurs="0"/>
   					<xs:element name="RtoRtV" type="basic:EmptyType"  minOccurs="0"/>
   					
-  					<xs:element name="numFascicoliRelazioneTecnica" type="xs:int"/>
-  					<xs:element name="numElaboratiGrafici" type="xs:int"/>
   					
+  				    <xs:element name="relazioneTecnica">
+  				        <xs:complexType>
+  				            <xs:sequence>
+  				                <xs:element name="fascicoloRelazioneTecnica" type="moduli:AllegatoType" minOccurs="0" maxOccurs="unbounded"/>
+  				            </xs:sequence>
+  				            <xs:attribute name="numero" type="xs:int" default="0" />
+  				        </xs:complexType>
+  				    </xs:element>
+  				    
+  				    <xs:element name="elaboratiGrafici">
+  				        <xs:complexType>
+  				            <xs:sequence>
+  				                <xs:element name="elaboratoGrafico" type="moduli:AllegatoType" minOccurs="0" maxOccurs="unbounded"/>
+  				            </xs:sequence>
+  				            <xs:attribute name="numero" type="xs:int" default="0" />
+  				        </xs:complexType>
+  				    </xs:element>
+  					
+
   					<!-- Pagamento -->
   					<xs:element name="distintaVersamento" type="pincommon:DistintaVersamentoType"/>
   					<xs:element name="datiPerCorrispondenza" type="pincommon:CorrispondenzaType"  minOccurs="0"/>
