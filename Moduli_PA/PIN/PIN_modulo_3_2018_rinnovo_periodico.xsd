@@ -46,11 +46,114 @@
   					<!-- Delega -->
   					<xs:element name="delegatoChiarimentiTecnici" type="pincommon:PersonaDelegataType" minOccurs="0"/>
   	
+  					<!-- ALLEGATI -->
+  					<xs:element name="allegati">
+  						<xs:complexType>
+  							<xs:sequence>
+  								<xs:element name="pin3_1Asseverazione" type="pinrinnovo:pin3_1AsseverazioneType" />
+  							</xs:sequence>
+  						</xs:complexType>
+  					</xs:element> 
+  	
   				</xs:sequence>
   			</xs:extension>	
   		</xs:complexContent>
   	</xs:complexType>
   
-  	
+	<!-- Allegato 3.1 - ASSEVERAZIONE -->
+	<xs:complexType name="pin3_1AsseverazioneType">
+		<xs:complexContent>
+			<xs:extension base="moduli:AllegatoType">
+				<xs:sequence>
+					<xs:annotation>
+						<xs:documentation>
+							Allegato 3.1 Asseverazione ai fini della attestazione di rinnovo periodico di conformità antincendio
+						</xs:documentation>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element name="rifPraticaVVF" type="xs:int"/>
+						<xs:element name="datiProfessionista" type="pincommon:ProfessionistaType"/>
+						<xs:element name="datiContattoProfessionista" type="pincommon:ProfessionistaDatiContattoType"/>
+						<xs:element name="attivita" type="pincommon:AttivitaType"/>
+						<xs:element name="riferimentoProgetto" type="pinrinnovo:SCIAPresentateType" maxOccurs="unbounded" />
+						<xs:element name="dataSopralluogo" type="xs:date"  />
+						<xs:element name="caratteristicheProtezioneAttivaAntincendio" type="pinrinnovo:ProtezioneAttivaAntincendioType" />
+						<xs:element name="caratteristicheProtezionePassivaAntincendio" type="pinrinnovo:ProtezionePassivaAntincendioType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
 
+	<xs:complexType name="SCIAPresentateType">
+		<xs:annotation>
+			<xs:documentation>
+				soggetta ai controlli dei Vigili del Fuoco ai sensi dell’allegato I del DPR 151/2011, in relazione alla quale è/sono
+				stata/e presentata/e la/e SCIA (e/o autorizzazione antincendio per le attività di cui all’art.11, commi 5 e 6, del DPR 01/08/2011 n.151.)
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="dataPresentazione" type="xs:date"  />
+			<xs:element name="nomeResponsabileAttivita" type="xs:string"  />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ProtezioneAttivaAntincendioType">
+		<xs:annotation>
+			<xs:documentation>
+				A-IMPIANTO/I FINALIZZATO/I ALLA PROTEZIONE ATTIVA ANTINCENDIO
+				(con esclusione delle attrezzature mobili di estinzione) 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tipologiaEstinzioneControllo" type="xs:string"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+					ESTINZIONE O CONTROLLO INCENDI/ESPLOSIONI, DI TIPO AUTOMATICO E MANUALE 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tipologiaControlloFumoCalore" type="xs:string"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						CONTROLLO DEL FUMO E DEL CALORE 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tipologiaRilevazione" type="xs:string"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						RIVELAZIONE DI FUMO, CALORE, GAS,INCENDIO 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tipologiaSegnalazioneAllarme" type="xs:string"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						SEGNALAZIONE E ALLARME INCENDIO 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tipologiaAltro" type="xs:string"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						ALTRO 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="ProtezionePassivaAntincendioType">
+		<xs:annotation>
+			<xs:documentation>
+				B-PRODOTTI E SISTEMI PER LA PROTEZIONE PASSIVA DI CUI AL DM 16.2.2007.
+				'Prodotti e sistemi per la protezione di parti o elementi portanti delle opere di costruzione'
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tipologiaDescrizione" type="xs:string"  minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	
 </xs:schema>
