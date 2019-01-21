@@ -72,13 +72,13 @@
 					</xs:annotation>
 					<xs:sequence>
 						<xs:element name="rifPraticaVVF" type="xs:int"/>
-						<xs:element name="datiProfessionista" type="pincommon:ProfessionistaType"/>
+						<xs:element name="datiProfessionista" type="pincommon:ProfessionistaAntincendioType"/>
 						<xs:element name="datiContattoProfessionista" type="pincommon:ProfessionistaDatiContattoType"/>
 						<xs:element name="attivita" type="pincommon:AttivitaType"/>
 						<xs:element name="riferimentoProgetto" type="pinrinnovo:SCIAPresentateType" maxOccurs="unbounded" />
 						<xs:element name="dataSopralluogo" type="xs:date"  />
 						<xs:element name="caratteristicheProtezioneAttivaAntincendio" type="pinrinnovo:ProtezioneAttivaAntincendioType" />
-						<xs:element name="caratteristicheProtezionePassivaAntincendio" type="pinrinnovo:ProtezionePassivaAntincendioType" maxOccurs="unbounded"/>
+						<xs:element name="caratteristicheProtezionePassivaAntincendio" type="pinrinnovo:ProtezionePassivaAntincendioType" />
 					</xs:sequence>
 				</xs:sequence>
 			</xs:extension>
@@ -152,7 +152,7 @@
 			</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="tipologiaDescrizione" type="xs:string"  minOccurs="0" />
+			<xs:element name="tipologiaDescrizione" type="xs:string"  minOccurs="0" maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 	
