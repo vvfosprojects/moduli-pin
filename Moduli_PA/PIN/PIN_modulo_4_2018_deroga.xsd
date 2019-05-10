@@ -32,7 +32,7 @@
 					<xs:element name="attivitaPrincipale" type="pincommon:AttivitaType"/>
 					<xs:choice>
 						<xs:element name="attivitaOggettodiDerogaIndividuate" type="pincommon:CodiceAttivitaType" maxOccurs="unbounded"/>
-						<xs:element name="attivitaOggettodiDerogaNonIndividuate" type="basic:EmptyType"  minOccurs="0">
+						<xs:element name="attivitaOggettodiDerogaNonIndividuate" type="basic:EmptyType">
 							<xs:annotation>
 								<xs:documentation>Non risultano  riportate nell'Allegato I al DPR 151 del 01/08/2011</xs:documentation>
 							</xs:annotation>
