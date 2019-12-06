@@ -70,17 +70,14 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-       
         
 	<xs:complexType name="ProfessionistaDatiContattoType">
 		<xs:sequence>
 			<xs:element name="indirizzo" type="aggregate:IndirizzoType" minOccurs="0"/>
-			<xs:element name="contatti" type="aggregate:ContattiDatiType" minOccurs="0" />
-			<!-- campo telefono -->
+			<xs:element name="PEC" type="basic:EMailIndirizzoType" minOccurs="1"/>
+			<xs:element name="email" type="basic:EMailIndirizzoType" minOccurs="0"/>            
 		</xs:sequence>
 	</xs:complexType>
-       
-   
    
 	<xs:complexType name="CorrispondenzaType">
 		<xs:annotation>
