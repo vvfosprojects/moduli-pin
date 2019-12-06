@@ -195,7 +195,7 @@
   			<xs:element name="numAttestato" type="xs:string"/>
   			<xs:element name="dataVersamento" type="xs:date"/>
 			<xs:element name="tesoreriaProvinciale" type="aggregate:ProvinciaType"/> 	
-			<xs:element name="totaleVersamento" type="xs:decimal"/>
+			<xs:element name="totaleVersamento" type="xs:decimal"></xs:element>
 			<xs:element name="attivitaDettaglio" type="pincommon:AttivitaVersamentoType" maxOccurs="unbounded"  />
   		</xs:sequence>
   	</xs:complexType>
@@ -203,7 +203,15 @@
 	 
 	<xs:complexType name="AttivitaVersamentoType">
 		<xs:sequence>
-			<xs:element name="attivita" type="pincommon:CodiceAttivitaType"/>
+			<xs:element name="attivita" type="pincommon:CodiceAttivitaType">
+				<xs:annotation>
+					<xs:documentation>
+						Al fine di definire il relativo importo, riportare il numero e la categoria corrispondente (A/B/C) 
+						individuata sulla base dell'elenco contenuto nell’Allegato I del DPR 01/08/2011 n.151 e la sottoclasse 
+						di cui al Decreto del Ministro dell’Interno del 7-8-2012
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="RtoRtV" type="basic:EmptyType"  minOccurs="0"/>
 			<xs:element name="importoVersamento" type="xs:decimal"/>
 		</xs:sequence>

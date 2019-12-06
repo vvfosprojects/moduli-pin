@@ -31,7 +31,14 @@
 					<!-- CORPO DEL MODULO -->
 					<xs:element name="attivitaPrincipale" type="pincommon:AttivitaType"/>
 					<xs:choice>
-						<xs:element name="attivitaOggettodiDerogaIndividuate" type="pincommon:CodiceAttivitaType" maxOccurs="unbounded"/>
+						<xs:element name="attivitaOggettodiDerogaIndividuate" type="pincommon:CodiceAttivitaType" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>
+									Riportare il numero e la categoria corrispondente (A/B/C) individuata sulla base dell’elenco contenuto 
+									nell’Allegato I del DPR 01/08/2011 n.151 e la sottoclasse di cui al Decreto del Ministro dell'Interno 7-8-2012.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
 						<xs:element name="attivitaOggettodiDerogaNonIndividuate" type="basic:EmptyType">
 							<xs:annotation>
 								<xs:documentation>Non risultano  riportate nell'Allegato I al DPR 151 del 01/08/2011</xs:documentation>
@@ -53,16 +60,33 @@
 					<xs:element name="relazioneTecnica">
 						<xs:complexType>
 							<xs:sequence>
-								<xs:element name="fascicoloRelazioneTecnica" type="moduli:AllegatoType" minOccurs="0" maxOccurs="unbounded"/>
+								<xs:element name="fascicoloRelazioneTecnica" type="moduli:AllegatoType" minOccurs="0" maxOccurs="unbounded">
+									<xs:annotation>
+										<xs:documentation>
+											In caso di utilizzo dell'approccio ingegneristico alla sicurezza antincendio, di cui al Decreto del Ministero dell’Interno 9-5-2007, 
+											la documentazione tecnica di progetto, a firma di professionista antincendio, deve essere conforme a quanto specificato 
+											all'art. 6, comma 3, del Decreto del Ministero dell’Interno 7-8-2012;
+										</xs:documentation>
+									</xs:annotation>
+								</xs:element>
 							</xs:sequence>
 							<xs:attribute name="numero" type="xs:int" default="0" />
 						</xs:complexType>
+						
 					</xs:element>
 					
 					<xs:element name="elaboratiGrafici">
 						<xs:complexType>
 							<xs:sequence>
-								<xs:element name="elaboratoGrafico" type="moduli:AllegatoType" minOccurs="0" maxOccurs="unbounded"/>
+								<xs:element name="elaboratoGrafico" type="moduli:AllegatoType" minOccurs="0" maxOccurs="unbounded">
+									<xs:annotation>
+										<xs:documentation>
+											In caso di utilizzo dell'approccio ingegneristico alla sicurezza antincendio, di cui al Decreto del Ministero dell’Interno 9-5-2007, 
+											la documentazione tecnica di progetto, a firma di professionista antincendio, deve essere conforme a quanto specificato 
+											all'art. 6, comma 3, del Decreto del Ministero dell’Interno 7-8-2012;
+										</xs:documentation>
+									</xs:annotation>
+								</xs:element>
 							</xs:sequence>
 							<xs:attribute name="numero" type="xs:int" default="0" />
 						</xs:complexType>
@@ -87,9 +111,22 @@
 			<xs:element name="disposizione" type="xs:string"  minOccurs="1" />
 			<xs:element name="articolo" type="xs:int"  minOccurs="1" />
 			<xs:element name="descrizioneDeroga" type="xs:string"  minOccurs="1" />
-			<xs:element name="vincoli" type="xs:string"  minOccurs="1" />
-			<xs:element name="richioAggiuntivo" type="xs:string"  minOccurs="1" />
-			<xs:element name="misureTecniche" type="xs:string"  minOccurs="1" />
+			<xs:element name="vincoli" type="xs:string"  minOccurs="1" >
+				<xs:annotation>
+					<xs:documentation>Caratteristiche e/o vincoli esistenti che comportano l’impossibilità di ottemperare alle disposizioni normative</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="richioAggiuntivo" type="xs:string"  minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Valutazione del rischio aggiuntivo conseguente alla mancata osservanza delle disposizioni cui si intende derogare</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="misureTecniche" type="xs:string"  minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Misure tecniche che si ritengono idonee a compensare il rischio aggiuntivo</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
 		</xs:sequence>
 	</xs:complexType>
 	
