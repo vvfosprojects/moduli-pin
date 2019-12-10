@@ -9,7 +9,7 @@
     
     targetNamespace="http://www.agid.gov.it/AgID_aggregate_components"  
     elementFormDefault="qualified" attributeFormDefault="qualified"
-    version="1.2.0" xml:lang="it">
+    version="1.3.0" xml:lang="it">
 
     
     <xs:import namespace="http://www.w3.org/ns/corevocabulary/BasicComponents" schemaLocation="ISA_Core_Vocabularies/CoreVocabularies-BasicComponents-1.1.xsd"/>
@@ -185,17 +185,6 @@
             <xs:group ref="aggregate:ContattiFoniaGroup"/>
         </xs:sequence>
     </xs:complexType>
-    
-    <xs:group name="ContattiDatiGroup">
-        <xs:annotation>
-            <xs:documentation>Gruppo di proprietà associate ai contatti mail</xs:documentation>
-        </xs:annotation>
-        <xs:sequence>
-            <xs:element name="PEC" type="basic:EMailIndirizzoType" minOccurs="0"/>
-            <xs:element name="email" type="basic:EMailIndirizzoType" minOccurs="0"/>            
-        </xs:sequence>
-    </xs:group>
-    
 
     <xs:complexType name="ContattiDatiType">
         <xs:annotation>
@@ -205,6 +194,17 @@
             <xs:group ref="aggregate:ContattiDatiGroup"/>
         </xs:sequence>
     </xs:complexType>
+
+    <xs:group name="ContattiDatiGroup">
+        <xs:annotation>
+            <xs:documentation>Gruppo di proprietà associate ai contatti mail</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="PEC" type="basic:EMailIndirizzoType" minOccurs="0"/>
+            <xs:element name="email" type="basic:EMailIndirizzoType" minOccurs="0"/>            
+        </xs:sequence>
+    </xs:group>
+
 
     <xs:group name="ContattiGroup">
         <xs:annotation>

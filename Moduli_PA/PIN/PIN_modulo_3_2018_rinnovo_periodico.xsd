@@ -29,11 +29,12 @@
   			<xs:extension base="pincommon:ModuloBaseType">
   				<xs:sequence>
   					<!-- CORPO DEL MODULO -->
-
+  					
+  					<!-- Controllare che una delle tre opzioni sia presente -->
   					<xs:element name="riferimentoScia" type="xs:date" maxOccurs="unbounded" />
   					<xs:element name="attivitaPrincipale" type="pincommon:AttivitaType"/>
   					<xs:element name="codiceAttivita" type="pincommon:CodiceAttivitaType" maxOccurs="unbounded"/>
-  					<xs:sequence ><!-- Vericare se possible controllare che una delle tre opzioni sia presente -->
+  					<xs:sequence >
 	  					<xs:choice>
 	  					    <xs:element name="rifAsseverazione" type="basic:EmptyType"/>
 	  					    <xs:element name="rifNoAsseverazione" type="basic:EmptyType"/>
