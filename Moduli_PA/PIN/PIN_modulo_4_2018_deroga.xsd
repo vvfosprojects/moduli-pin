@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+	xmlns:pinderoga="http://www.vigilfuoco.it/MODULI_PA/PIN/modulo_4_2018_deroga"
+	xmlns:pincommon="http://www.vigilfuoco.it/MODULI_PA/PIN/pin_common_components"
+	xmlns:moduli="http://www.agid.gov.it/MODULI_PA/moduli_common_components"
+	xmlns:aggregate="http://www.agid.gov.it/AgID_aggregate_components"
+	xmlns:basic="http://www.agid.gov.it/AgID_basic_components"
+	xmlns:enumeration="http://www.agid.gov.it/AgID_enumeration"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.vigilfuoco.it/MODULI_PA/PIN/modulo_4_2018_deroga"
+	elementFormDefault="qualified" attributeFormDefault="qualified" version="1.0.0">
+	
+	<xs:import namespace="http://www.vigilfuoco.it/MODULI_PA/PIN/pin_common_components" schemaLocation="PIN_common_components.xsd"/>    
+	<xs:import namespace="http://www.agid.gov.it/MODULI_PA/moduli_common_components" schemaLocation="../MODULI_common_components.xsd"/>
+	<xs:import namespace="http://www.agid.gov.it/AgID_basic_components" schemaLocation="../../AgID_Vocabularies/AgID_basic_components.xsd"/>
+	<xs:import namespace="http://www.agid.gov.it/AgID_aggregate_components" schemaLocation="../../AgID_Vocabularies/AgID_aggregate_components.xsd"/>
+	<xs:import namespace="http://www.agid.gov.it/AgID_enumeration" schemaLocation="../../AgID_Vocabularies/AgID_enumeration.xsd"/>
+	
+	<xs:annotation>
+		<xs:documentation>
+			PIN 4-2018 deroga          
+		</xs:documentation>
+	</xs:annotation>
+	
+	<xs:element name="ModuloDeroga" type="pinderoga:ModuloDerogaType"/>
+	
+	<xs:complexType name="ModuloDerogaType" >
+		<xs:complexContent>
+			<xs:extension base="pincommon:ModuloBaseType">
+				<xs:sequence>
+					<!-- CORPO DEL MODULO -->
+					<xs:element name="attivitaPrincipale" type="pincommon:AttivitaType"/>
+					<xs:choice>
+						<xs:element name="attivitaOggettodiDerogaIndividuate" type="pincommon:CodiceAttivitaType" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>
+									Riportare il numero e la categoria corrispondente (A/B/C) individuata sulla base dell’elenco contenuto 
+									nell’Allegato I del DPR 01/08/2011 n.151 e la sottoclasse di cui al Decreto del Ministro dell'Interno 7-8-2012.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="attivitaOggettodiDerogaNonIndividuate" type="basic:EmptyType">
+							<xs:annotation>
+								<xs:documentation>Non risultano  riportate nell'Allegato I al DPR 151 del 01/08/2011</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:choice>
+					<xs:element name="datiProfessionista" type="pincommon:ProfessionistaAntincendioType"/>
+					<xs:element name="datiContattoProfessionista" type="pincommon:ProfessionistaDatiContattoType"/>
+					
+					<!-- DISPOSIZIONI NORMATIVE ALLE QUALI SI RICHIEDE DEROGA -->
+					<xs:element name="disposizioniNormativeDeroga" type="pinderoga:disposizioniNormativeDerogaType" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>correlato con element: attivitaOggettodiDerogaIndividuate</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					
+					<xs:element name="RtoRtV" type="basic:EmptyType"  minOccurs="0"/>
+					
+					<xs:element name="relazioneTecnica">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="fascicoloRelazioneTecnica" type="moduli:AllegatoType" minOccurs="0" maxOccurs="unbounded">
+									<xs:annotation>
+										<xs:documentation>
+											In caso di utilizzo dell'approccio ingegneristico alla sicurezza antincendio, di cui al Decreto del Ministero dell’Interno 9-5-2007, 
+											la documentazione tecnica di progetto, a firma di professionista antincendio, deve essere conforme a quanto specificato 
+											all'art. 6, comma 3, del Decreto del Ministero dell’Interno 7-8-2012;
+										</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+							<xs:attribute name="numero" type="xs:int" default="0" />
+						</xs:complexType>
+						
+					</xs:element>
+					
+					<xs:element name="elaboratiGrafici">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="elaboratoGrafico" type="moduli:AllegatoType" minOccurs="0" maxOccurs="unbounded">
+									<xs:annotation>
+										<xs:documentation>
+											In caso di utilizzo dell'approccio ingegneristico alla sicurezza antincendio, di cui al Decreto del Ministero dell’Interno 9-5-2007, 
+											la documentazione tecnica di progetto, a firma di professionista antincendio, deve essere conforme a quanto specificato 
+											all'art. 6, comma 3, del Decreto del Ministero dell’Interno 7-8-2012;
+										</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+							<xs:attribute name="numero" type="xs:int" default="0" />
+						</xs:complexType>
+					</xs:element>
+					
+					<!-- Pagamento -->
+					<xs:element name="distintaVersamento" type="pincommon:DistintaVersamentoType"/>
+					<xs:element name="datiPerCorrispondenza" type="pincommon:CorrispondenzaType"  minOccurs="0"/>
+					
+					<xs:element name="numPagineIStanza" type="xs:int"/>
+					
+					<!-- Delega -->
+					<xs:element name="delegatoChiarimentiTecnici" type="pincommon:PersonaDelegataType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>	
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="disposizioniNormativeDerogaType">
+		<xs:sequence>
+			<xs:element name="attivita" type="xs:int"  minOccurs="1" />
+			<xs:element name="disposizione" type="xs:string"  minOccurs="1" />
+			<xs:element name="articolo" type="xs:int"  minOccurs="1" />
+			<xs:element name="descrizioneDeroga" type="xs:string"  minOccurs="1" />
+			<xs:element name="vincoli" type="xs:string"  minOccurs="1" >
+				<xs:annotation>
+					<xs:documentation>Caratteristiche e/o vincoli esistenti che comportano l’impossibilità di ottemperare alle disposizioni normative</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="richioAggiuntivo" type="xs:string"  minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Valutazione del rischio aggiuntivo conseguente alla mancata osservanza delle disposizioni cui si intende derogare</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="misureTecniche" type="xs:string"  minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Misure tecniche che si ritengono idonee a compensare il rischio aggiuntivo</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+		</xs:sequence>
+	</xs:complexType>
+	
+</xs:schema>
