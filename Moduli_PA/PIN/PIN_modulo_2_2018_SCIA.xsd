@@ -30,6 +30,7 @@
 				<xs:sequence>
 					<!-- CORPO DEL MODULO -->
 					<xs:element name="riferimentoProgetto" type="pinscia:RiferimentoProgettoType" />
+					
 					<!-- SEGNALA -->
 					<xs:element name="attivita" type="pincommon:AttivitaType"/>
 					<xs:element name="codiceAttivita" type="pincommon:CodiceAttivitaType"  maxOccurs="unbounded"/>
