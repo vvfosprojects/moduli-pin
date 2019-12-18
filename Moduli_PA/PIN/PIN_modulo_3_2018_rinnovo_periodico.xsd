@@ -30,7 +30,7 @@
   				<xs:sequence>
   					<!-- CORPO DEL MODULO -->
   					
-  					<!-- Controllare che una delle tre opzioni sia presente -->
+  					<!-- Vincoli : Controllare presenza di una delle tre opzioni -->
   					<xs:element name="riferimentoScia" type="xs:date" maxOccurs="unbounded" />
   					<xs:element name="attivitaPrincipale" type="pincommon:AttivitaType"/>
   					<xs:element name="codiceAttivita" type="pincommon:CodiceAttivitaType" maxOccurs="unbounded"/>
