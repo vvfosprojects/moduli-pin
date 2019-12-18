@@ -41,6 +41,7 @@
   					<xs:element name="tipoIntervento" type="xs:string" minOccurs="0"/>
   					<xs:element name="RtoRtV" type="basic:EmptyType"  minOccurs="0"/>
   					
+  					
   				    <xs:element name="relazioneTecnica">
   				        <xs:complexType>
   				            <xs:sequence>
@@ -58,6 +59,7 @@
   				            <xs:attribute name="numero" type="xs:int" default="0" />
   				        </xs:complexType>
   				    </xs:element>
+  					
 
   					<!-- Pagamento -->
   					<xs:element name="distintaVersamento" type="pincommon:DistintaVersamentoType"/>
